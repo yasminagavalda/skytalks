@@ -1,5 +1,7 @@
 # SKYTALKS
 
+![Logo](img/logo.png)
+
 **Descripción**
 
 Skytalks es una aplicación web enfocada a realizar intercanvio de idiomas entre usuarios.
@@ -55,3 +57,23 @@ En la página crear nueva conversación podremos crear un encuentro seleccionand
 En la página "mis conversaciones" podemos consultar las próximas conversaciones que ya tenemos confirmadas con otros usuarios.
 
 ![Mytalks](img/mytalks.png)
+
+**Colors**
+
+![Colors](img/colors.png)
+
+**Font family**
+
+* Josefin Sans
+* Raleway
+
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway" rel="stylesheet">
+
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Raleway', sans-serif;
+
+![Fonts](img/fontfamily.png)
+
+
+
+
