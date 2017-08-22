@@ -1,1 +1,1 @@
-angular.module('skytalksApp', ['ngRoute'])
+angular.module('skytalksApp', ['ngRoute', 'ngCookies'])
