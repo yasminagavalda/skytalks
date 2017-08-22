@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .body
+    .login
+      .container
+        .wrapper
+          form.form-signin(action='login', method='POST', name='Login_Form')
+            h3.form-signin-heading Register
+            hr.colorgraph
+            br
+            input.form-control(type='text', name='firstname', placeholder='Name', required='', autofocus='')
+            br
+            input.form-control(type='email', name='email', placeholder='Email', required='', autofocus='')
+            br
+            input.form-control(type='text', name='username', placeholder='Username', required='', autofocus='')
+            br
+            input.form-control(type='password', name='password', placeholder='Password', required='')
+            br
+            button.btn.btn-lg.mybutton.btn-block(name='Submit', value='Login', type='Submit') Register

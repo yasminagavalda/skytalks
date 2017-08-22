@@ -1,0 +1,68 @@
+extends ../layout
+
+block content
+  .body
+    #custom-search-input
+      form.input-group.col-md-12
+        input.form-control.input-lg(type='text', placeholder='Enter a language...')
+        span.input-group-btn
+          button.btn.btn-info.btn-lg(type='button' onclick="window.location.href='/results'")
+            i.glyphicon.glyphicon-search
+    br
+    br
+    .container.results
+      ul.thumbnails
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Paul
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Maria
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Sergey
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Paul
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Paul
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        li.span4.col-xs-12.col-md-4
+          .thumbnail
+            .img-thumbnail
+              img(src='img/default-user-image.png')
+              h3 Vladimir
+            .caption
+              p Language: Russian
+              p Date: Wednesday September 20
+              button.btn.mybutton(onclick="window.location.href='/details'") Show details

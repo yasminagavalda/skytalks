@@ -1,0 +1,24 @@
+{
+  "name": "skytalks",
+  "version": "1.0.0",
+  "description": "![Logo](img/logo.png)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasminagavalda/skytalks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yasminagavalda/skytalks/issues"
+  },
+  "homepage": "https://github.com/yasminagavalda/skytalks#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "pug": "^2.0.0-rc.3"
+  }
+}

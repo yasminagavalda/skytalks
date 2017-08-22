@@ -1,0 +1,56 @@
+extends ../layout
+
+block content
+  .body
+    .details
+      .row
+        // left column
+        .col-md-4.col-sm-6.col-xs-12
+          .text-center
+            img.avatar.img-circle.img-thumbnail(src='img/default-user-image.png', alt='avatar')
+        .col-md-8.col-sm-6.col-xs-12.personal-info
+          br
+          .form-horizontal(role='form')
+            .form-group
+              label.col-md-3.control-label First name:
+              .col-md-8
+                p Jane
+            .form-group
+              label.col-md-3.control-label Last name:
+              .col-md-8
+                p Bishop
+            .form-group
+              label.col-md-3.control-label Age:
+              .col-md-8
+                p 32
+            .form-group
+              label.col-md-3.control-label Nationality:
+              .col-md-8
+                p British
+            .form-group
+              label.col-md-3.control-label About Jane:
+              .col-md-8
+                p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est nemo aspernatur vitae soluta cum tenetur omnis animi porro, hic quos aliquam reprehenderit eos nostrum obcaecati quo nesciunt repudiandae quam assumenda?
+      .form-horizontal(role='form')
+        .form-group
+          label.col-md-3.control-label Language:
+          .col-md-6
+            p Russian
+        .form-group
+          label.col-md-3.control-label Level:
+          .col-md-6
+            p Medium
+        .form-group
+          label.col-md-3.control-label Place:
+          .col-md-6
+            p Le Journal, Carrer de Francisco Giner 36, Barcelona
+        .form-group
+          label.col-md-3.control-label Date:
+          .col-md-6
+            p Wednesday September 20, 6:30 PM
+        .form-group
+          label.col-md-3.control-label
+          .col-md-6
+            button.join.btn.mybutton.btn-md(onclick="window.location.href='/details'") Join!
+
+            
