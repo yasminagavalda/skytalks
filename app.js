@@ -4,9 +4,9 @@ const cookieSession = require('cookie-session')
 
 const app = express()
 
-app.set('view engine', 'pug')
+const PORT = process.env.PORT || 3005
 
-const PORT = 3005
+app.set('view engine', 'pug')
 
 app.use(express.static( path.join(__dirname,'public')))
 

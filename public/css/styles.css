@@ -60,6 +60,7 @@
     width: 160px;
     text-align: center;
     background-color: transparent;
+    margin-left: 1%;
 }
 .navbar>.container .navbar-brand-centered, 
 .navbar>.container-fluid .navbar-brand-centered {
@@ -85,6 +86,7 @@
     padding: 15px 0;
     color: #DDD;
     font-size: 15px;
+    padding-left:1%;
 
 }
 
@@ -93,6 +95,13 @@
     padding-right: 20px;
 
 }
+
+.footer .footer-bottom ul {
+    padding-left: 0px;
+
+}
+    
+
 
 .footer .footer-bottom ul li a {
     color: white;
@@ -185,6 +194,11 @@
 
 
 /*---------------- RESULTS ----------------*/
+
+#custom-search-input {
+    margin-left: 2%;
+    margin-right: 2%;
+}
 
 .results {
     margin-bottom: 100px;
