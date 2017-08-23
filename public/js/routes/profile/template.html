@@ -11,48 +11,68 @@
             <!-- edit form column-->
             <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
                 <div class="alert alert-info alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        This is an <strong>.alert</strong>. Use this to show important messages to the user.</div>
-                <form role="form" class="form-horizontal">
+                <form role="form" class="form-horizontal" action="user" method="POST">
                     <legend>Personal info</legend>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input value="Jane" type="text" class="form-control"/>
+                            <input value="{{ user.firstname }}" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Last name:</label>
                         <div class="col-lg-8">
-                            <input value="Bishop" type="text" class="form-control"/>
+                            <input value="{{ user.lastname }}" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Age:</label>
                         <div class="col-lg-8">
-                            <input value="32" type="number" class="form-control"/>
+                            <input value="{{ user.age }}" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Nationality:</label>
+                        <label class="col-lg-3 control-label">Country:</label>
                         <div class="col-lg-8">
-                            <input value="British" type="text" class="form-control"/>
+                            <input value="{{ user.country }}" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input value="janesemail@gmail.com" type="email" class="form-control"/>
+                            <input value="{{ user.email }}" type="email" class="form-control"/>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Languages:</label>
                         <div class="col-lg-8">
-                            <input value="Spanish, English, Russian, French" type="text" class="form-control"/>
+                            <ul class="languages-li">
+                                <li ng-repeat="language in languages"><label class="control-label">{{language.language}}:</label> {{language.level}} </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Add new language:</label>
+                        <div class="new-lang col-lg-8">
+                            <input type="text" id="new-language" ng-model="newlanguage" placeholder="Enter a language..." class="form-control nlanguage"/>
+                            <select id="new-language" ng-model="newlevel" name="OC" class="form-control level" placeholder="Select level">
+                                <option>Begginer</option>
+                                <option>Intermediate</option>
+                                <option>Advanced</option>
+                                <option>Proficient</option>
+                                <option>Native</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="btn mybutton btn-md"><i class="glyphicon glyphicon-ok"></i></button>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Username:</label>
                         <div class="col-lg-8">
-                            <input value="janeuser" type="text" class="form-control"/>
+                            <input value="{{ user.username }}" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,13 +90,13 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">About me:</label>
                         <div class="col-lg-8">
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control">{{ user.about }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label"></label>
                         <div class="col-lg-8">
-                            <input value="Save Changes" type="button" class="btn mybutton"/>
+                            <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="btn mybutton btn-md">Save changes</button>
                         </div>
                     </div>
                 </form>

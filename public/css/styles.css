@@ -256,6 +256,27 @@
     border-radius: 75%
 }
 
+.languages-li li {
+    list-style-type: circle;
+}
+
+.new-lang{
+    display: inline-flex;
+}
+
+.nlanguage{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.level {
+    border-radius: 0;
+}
+
+#new-language {
+    width: 46%;
+}
+
 /*---------------- LOGIN ----------------*/
 
 .login form {

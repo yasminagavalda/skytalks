@@ -3,6 +3,6 @@ angular.module('skytalksApp')
       $routeProvider
             .when('/', {
               templateUrl: 'js/routes/profile/template.html',
-              //controller: 'viewDetailsController'
+              controller: 'usersController'
             })
     })

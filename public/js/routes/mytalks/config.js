@@ -3,6 +3,6 @@ angular.module('skytalksApp')
       $routeProvider
             .when('/talks', {
               templateUrl: 'js/routes/mytalks/template.html',
-              //controller: 'viewDetailsController'
+              controller: 'talksController'
             })
     })
