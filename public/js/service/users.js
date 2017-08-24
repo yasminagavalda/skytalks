@@ -14,13 +14,12 @@ angular.module('skytalksApp')
         }
 
         var getLanguages = function(userId, callback) {
-            var url = ''
-            callback(users[0].languages)
-            // $http.get(url)
-            //     .then(function(response) {
-            //         console.log(response)
-            //         callback(response.data.languages)
-            //     })
+            var url = 'user/' + userId
+            $http.get(url)
+                .then(function(response) {
+                    console.log(response)
+                    callback(response.data.languages)
+                })
         }
 
         var getTalks = function(userId) {

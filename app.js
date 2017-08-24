@@ -78,14 +78,12 @@ app.get('/talk/:id', (req,res) => {
   res.json(talks)
 })
 
-app.get('/', (req,res) => {
-  res.render('pages/home')
+app.get('/results', (req,res) => {
+  res.render('pages/results', {talks})
 })
 
-
-
-app.get('/results', (req,res) => {
-  res.render('pages/results')
+app.get('/', (req,res) => {
+  res.render('pages/home')
 })
 
 app.get('/details', (req,res) => {

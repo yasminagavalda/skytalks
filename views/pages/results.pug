@@ -12,57 +12,13 @@ block content
     br
     .container.results
       ul.thumbnails
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Paul
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Maria
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Sergey
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Paul
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Paul
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
-        li.span4.col-xs-12.col-md-4
-          .thumbnail
-            .img-thumbnail
-              img(src='img/default-user-image.png')
-              h3 Vladimir
-            .caption
-              p Language: Russian
-              p Date: Wednesday September 20
-              button.btn.mybutton(onclick="window.location.href='/details'") Show details
+        each talk, i in talks
+          li.span4.col-xs-12.col-md-4
+            .thumbnail
+              .img-thumbnail
+                img(src='img/default-user-image.png')
+                h3 #{talk.firstname_with}
+              .caption
+                p Language: #{talk.language}
+                p Date: #{talk.date}
+                button.btn.mybutton(onclick="window.location.href='/details'") Show details

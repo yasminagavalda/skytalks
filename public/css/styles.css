@@ -333,9 +333,10 @@
     border-radius: 100%
 }
 
+
 .list-group .list-group-item .row-content {
     display: inline-block;
-    width: calc(100% - 92px);
+    width: 80%;
     min-height: 66px;
 }
 
@@ -345,8 +346,63 @@
     line-height: 29px;
 }
 
-.img-box {
-    box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
-    border-radius: 2px;
-    border: 0;
+
+div.bhoechie-tab-menu{
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
 }
+div.bhoechie-tab-menu div.list-group{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+  margin-bottom: 0;
+  padding-top:15px;
+  padding-bottom:15px;
+  min-height: 50px;
+}
+
+div.bhoechie-tab-menu div.list-group>a.active{
+  background-color: #0C677F;
+  background-color: #0C677F;
+  color: white;
+}
+
+div.bhoechie-tab-content{
+  background-color: #ffffff;
+  /* border: 1px solid #eeeeee; */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+  display: none;
+}
+
+img.circle {
+    
+    width:70px;
+    height: 70px;
+    border-radius: 35px;
+}
+
+.row-picture.img {
+    float: right;
+}
+
+.showtalks.list-group {
+    display: inline-block;
+}
+
+.date {
+    width: 100px;
+}
+
+
+
+
+
+
+
+
+

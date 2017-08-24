@@ -9,7 +9,7 @@ angular.module('skytalksApp')
         // })
 
 
-        $scope.createNewTalk = function(newlanguage, newplace, newdate) {
+        $scope.createNewTalk = function(newlanguage, newplace, newdate, $location) {
         	console.log(newlanguage, newplace, newdate)
         }
       	// $scope.apply()
