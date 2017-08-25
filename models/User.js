@@ -13,6 +13,8 @@ var UserSchema = new mongoose.Schema({
     language: String, 
     level: String
   }],
+  created: String,
+  joined: String,
 }, { collection })
 
 module.exports = mongoose.model('User', UserSchema);

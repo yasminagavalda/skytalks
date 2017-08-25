@@ -112,5 +112,6 @@ app.get('/register', (req,res) => {
   res.render('pages/register')
 })
 
+
 console.log(`Listening on port ${PORT}`)
 app.listen(PORT)
