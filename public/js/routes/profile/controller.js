@@ -16,7 +16,14 @@ angular.module('skytalksApp')
       	users[0].languages.push({language: newlanguage, level: newlevel})
       	console.log(users[0].languages)
       	$scope.user = users[0]
-
+      }
+      $scope.type = "password"
+      $scope.showPassword = function () {
+        if ($scope.type === "password") {
+          $scope.type = "text"
+        } else {
+          $scope.type = "password"
+        }
       }
     })
       

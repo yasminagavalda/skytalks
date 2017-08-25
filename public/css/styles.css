@@ -80,7 +80,7 @@
     left:0px;
     right: 0px;
     bottom:0px;
-
+    z-index: 1;
 }
 
 .footer .footer-bottom {
@@ -299,6 +299,28 @@
     width: 320px;
 }
 
+.input-pass {
+    display: inline-flex;
+}
+
+.reveal {
+    display: inline-block;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.password {
+    display: inline-block;
+    width: 92%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.showpass {
+    width: 8%;
+
+}
+
 /*---------------- MY TALKS ----------------*/
 
 .newtalk {
@@ -313,7 +335,7 @@
     background-color: transparent;
     overflow: hidden;
     border: 0;
-    border-radius: 0;
+    border-radius: 5px;
     padding: 0 16px;
 }
 .list-group .list-group-item .row-picture,
