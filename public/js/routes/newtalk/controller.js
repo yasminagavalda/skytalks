@@ -1,5 +1,5 @@
 angular.module('skytalksApp')
-    .controller('newTalkController', function ($scope, usersService) {
+    .controller('newTalkController', function ($scope, usersService, $location) {
       usersService.getLanguages('userId', function(languages) {
       	$scope.languages = languages
       	// $scope.apply()
@@ -9,8 +9,9 @@ angular.module('skytalksApp')
         // })
 
 
-        $scope.createNewTalk = function(newlanguage, newplace, newdate, $location) {
+        $scope.createNewTalk = function(newlanguage, newplace, newdate) {
         	console.log(newlanguage, newplace, newdate)
+          $location.path('/talks')
         }
       	// $scope.apply()
       })

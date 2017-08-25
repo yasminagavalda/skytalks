@@ -41,7 +41,7 @@
                         <label class="col-lg-3 control-label">Languages:</label>
                         <div class="col-lg-8">
                             <ul class="languages-li">
-                                <li ng-repeat="language in languages"><label class="control-label">{{language.language}}:</label> {{language.level}} </li>
+                                <li ng-repeat="language in languages"><label class="control-label">{{language.language}}:</label> {{language.level}} <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="remove-lang btn mybutton btn-md"><i class="glyphicon glyphicon-remove"></i></button></li>
                             </ul>
                         </div>
                     </div>
@@ -51,6 +51,7 @@
                         <div class="new-lang col-lg-8">
                             <input type="text" id="new-language" ng-model="newlanguage" placeholder="Enter a language..." class="form-control nlanguage"/>
                             <select id="new-language" ng-model="newlevel" name="OC" class="form-control level" placeholder="Select level">
+                                <option value="" disabled selected>Select level</option>
                                 <option>Begginer</option>
                                 <option>Intermediate</option>
                                 <option>Advanced</option>

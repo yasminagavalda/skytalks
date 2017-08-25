@@ -6,6 +6,7 @@ angular.module('skytalksApp')
         .then(function (response) {
           $scope.user = response
           $scope.languages = response.languages
+          console.log($scope.languages)
 
         })
 
@@ -13,10 +14,12 @@ angular.module('skytalksApp')
       
 
       $scope.addLanguage = function (newlanguage, newlevel) {
-      	users[0].languages.push({language: newlanguage, level: newlevel})
-      	console.log(users[0].languages)
-      	$scope.user = users[0]
+      	$scope.languages.push({language: newlanguage, level: newlevel})
+        $scope.newlanguage = ''
+        $scope.newlevel = ''
       }
+
+
       $scope.type = "password"
       $scope.showPassword = function () {
         if ($scope.type === "password") {

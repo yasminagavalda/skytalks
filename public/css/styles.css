@@ -280,6 +280,14 @@
     width: 46%;
 }
 
+.remove-lang {
+    background-color: white;
+    color: #24292E;
+    padding: 0;
+    position: absolute;
+    left: 60%;
+}
+
 /*---------------- LOGIN ----------------*/
 
 .login form {
