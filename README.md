@@ -1,6 +1,8 @@
 # SKYTALKS
 
-![Logo](img/logo.png)
+## [PROJECT IN PROGRESS]
+
+[PROJECT IN PROGRESS]:https://skytalks.herokuapp.com/#!/
 
 **Descripción**
 
