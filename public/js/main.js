@@ -1,9 +1,9 @@
 $(document).ready(function() {
   $('.reveal').click(function() {
-  	if ($('input').attr('type') === "password") {
-  		$('input').attr('type', 'text');
+  	if ($('.password').attr('type') === "password") {
+  		$('.password').attr('type', 'text');
   	} else {
-  		$('input').attr('type', 'password');
+  		$('.password').attr('type', 'password');
   	}
     
   });
