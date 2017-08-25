@@ -66,15 +66,15 @@ En la página "mis conversaciones" podemos consultar las próximas conversacione
 
 **Font family**
 
-* Josefin Sans
 * Raleway
 
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway" rel="stylesheet">
+~~~
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+~~~
 
-font-family: 'Josefin Sans', sans-serif;
 font-family: 'Raleway', sans-serif;
 
-![Fonts](img/fontfamily.png)
+
 
 
 
