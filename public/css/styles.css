@@ -323,7 +323,6 @@
 
 .list-group .list-group-item .row-picture img {
     display: block;
-    width: 56px;
     height: 56px;
     background: rgba(0, 0, 0, 0.1);
     padding: 1px;
@@ -394,15 +393,29 @@ img.circle {
     display: inline-block;
 }
 
-.date {
-    width: 100px;
+
+.date-body{
+  background-color: white;
 }
 
+.date-body .date-title{
+  color: black;
+}
 
+.date-body .date-content{
+  background-color: white;
+}
+.date-body .date-content p.dia{
+  margin: 0; font-size: 45px; font-weight: bold;
+}
+.nomargin{
+  margin: 0;
+}
 
+.show-events {
+    display: inline-flex;
 
-
-
+}
 
 
 

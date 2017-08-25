@@ -11,24 +11,115 @@
                           <div class="list-group">
                             <a href="#" class="list-group-item active text-center">Confirmed</a>
                             <a href="#" class="list-group-item text-center">Waiting for a partner</a>
+                            <a href="#" class="list-group-item text-center">Waiting for an answer</a>
                           </div>
                         </div>
                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
                             <!-- flight section -->
                             <div class="bhoechie-tab-content active">
                                 <div class="showtalks">
-                                    <div class="row" ng-repeat="talk in talks">         
-                                        <div>
-                                            <div class="list-group">
-                                                <div class="list-group-item">
+                                    <div class="row" ng-repeat="talk in talks">
+                                        <div class="list-group">
+                                            <div class="list-group-item">
+                                                <div class="show-events">
+                                                    <div class="text-center date-body" style="width:150px">
+                                                      <label for="" class="date-title">August 2017</label>
+                                                      <div class="date-content">
+                                                        <p class="dia">10</p>
+                                                      </div>
+                                                    </div>
+                                               
                                                     <div class="row-picture">
                                                         <img class="circle img-thumbnail img-box" src="http://sintret.com/img/andy.jpg" alt="sintret">
                                                     </div>
                                                     <div class="row-content">
                                                         <div class="list-group-item-heading">
-                                                            <h4>{{ talk.date }}</h4>
-                                                            <h5>Talk in {{ talk.language }} with {{ talk.firstname_with}}</h5>
+                                                            <h4>{{ talk.language}}</h4>
+                                                            <h5>6:30 PM</h5>
+                                                            <h5>Talk with {{ talk.firstname_with}}</h5>
                                                             <h6>{{talk.place}}</h6>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- train section -->
+                            <div class="bhoechie-tab-content">
+                                <div class="show-events">
+                                    <div class="text-center date-body" style="width:150px">
+                                        <label for="" class="date-title">September 2017</label>
+                                        <div class="date-content">
+                                            <p class="dia">10</p>
+                                        </div>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="list-group-item-heading">
+                                            <h4>English</h4>
+                                            <h5>6:30 PM</h5>
+                                            <h6>Skylab, Carrer Roc Boronat 35, Barcelona</h6>
+                                            <h5>Choose a Partner:</h5>
+                                            <div class="row-picture">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>                                    
+                                    
+                                </div>
+                                <div class="show-events">
+                                    <div class="text-center date-body" style="width:150px">
+                                        <label for="" class="date-title">September 2017</label>
+                                        <div class="date-content">
+                                            <p class="dia">10</p>
+                                        </div>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="list-group-item-heading">
+                                            <h4>English</h4>
+                                            <h5>6:30 PM</h5>
+                                            <h6>Skylab, Carrer Roc Boronat 35, Barcelona</h6>
+                                            <h5>Choose a Partner:</h5>
+                                            <div class="row-picture">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="bhoechie-tab-content">
+                                <div class="showtalks">
+                                    <div class="row" ng-repeat="talk in talks">   
+                                        <div>
+                                            <div class="list-group">
+                                                <div class="list-group-item">
+                                                    <div class="show-events">
+                                                        <div class="text-center date-body" style="width:150px">
+                                                          <label for="" class="date-title">August 2017</label>
+                                                          <div class="date-content">
+                                                            <p class="dia">10</p>
+                                                          </div>
+                                                        </div>
+                                                        <div class="row-picture">
+                                                            <img class="circle img-thumbnail img-box" src="http://sintret.com/img/andy.jpg" alt="sintret">
+                                                        </div>
+                                                        <div class="row-content">
+                                                            <div class="list-group-item-heading">
+                                                                <h4>{{talk.language}}</h4> 
+                                                                <h5>6:30 PM</h5>
+                                                                <h5>Waiting for {{talk.firstname_with}}...</h5>
+                                                                <h6>{{talk.place}}</h6>  
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -38,21 +129,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- train section -->
-                            <div class="bhoechie-tab-content">
-                                  <h4>English</h4>
-                                  <h5>Tuesday August 20</h5>
-                                  <h6>Skylab, Carrer Roc Boronat 35, Barcelona</h6> 
-                                  <h5>Choose a Partner:</h5>
-                                  <div class="row-picture">
-                                    <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                    <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                    <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                    <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                  </div>
-                                <hr>
-                            </div>
-
                 
                             
                         </div>
