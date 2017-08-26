@@ -91,7 +91,11 @@ app.get('/details', (req,res) => {
 })
 
 app.get('/user', (req,res) => {
-  res.render('pages/user')
+    res.render('pages/user')
+})
+
+app.get('/user#!/login', (req,res) => {
+    res.redirect('/login')
 })
 
 app.get('/login', (req,res) => {

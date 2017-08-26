@@ -1,15 +1,17 @@
 angular.module('skytalksApp')
-    .controller('talksController', function ($scope, usersService, $q, $location, $cookies) {
+    .controller('talksController', function ($scope, $window, usersService, $cookies) {
 
-
+   
       if ($cookies.get('loggedIn') === 'true') {
-      	  console.log($cookies.get('loggedIn'))
+      	  
 	      usersService.getTalks('userId')
 	        .then(function (response) {
 	          $scope.talks = response
 	        })
 	  } else {
-	  	$location.path('./login')
+	  	$window.location.href = "/login"
 	  }
+
+
     })
       
