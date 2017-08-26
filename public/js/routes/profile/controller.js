@@ -1,6 +1,6 @@
 angular.module('skytalksApp')
     
-    .controller('usersController', function ($scope, usersService) {
+    .controller('usersController', function ($scope, usersService, $window) {
 
       usersService.getInfo('userId')
         .then(function (response) {
@@ -28,5 +28,7 @@ angular.module('skytalksApp')
           $scope.type = "password"
         }
       }
+
+
     })
       
