@@ -13,8 +13,9 @@ var UserSchema = new mongoose.Schema({
     language: String, 
     level: String
   }],
-  created: String,
-  joined: String,
+  confirmed: { type: Schema.ObjectId, ref: "Talk" }
+  created: { type: Schema.ObjectId, ref: "Talk" },
+  joined: { type: Schema.ObjectId, ref: "Talk" },
 }, { collection })
 
 module.exports = mongoose.model('User', UserSchema);

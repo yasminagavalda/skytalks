@@ -1,8 +1,7 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const path = require('path')
 const cookieSession = require('cookie-session')
-
-// mongoose.Promise = Promise
 
 const app = express()
 
@@ -29,6 +28,40 @@ var users = {
   "about": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 }
 
+var talks1 = [{
+  _id: "2548dd",
+  language: "English",
+  level: "Advanced",
+  place: "Le Journal, Carrer de Francisco Giner 36, Barcelona",
+  date: "Tuesday August 20",
+  creator: "Yasmina",
+  joiners: ["Javier", "Paul", "Maria"],
+  joined: [],
+  available: true
+}, 
+{
+  _id: "2548dd",
+  language: "French",
+  level: "Medium",
+  place: "Skylab, Roc Boronat 35, Barcelona",
+  date: "Wednesday August 22",
+  creator: "Yasmina",
+  joiners: ["John", "Mery"],
+  joined: [],
+  available: true
+},
+{
+  _id: "2548dd",
+  language: "Arabian",
+  level: "Native",
+  place: "Moog, Arc del Teatre 3, Barcelona",
+  date: "Friday August 25",
+  creator: "Yasmina",
+  joiners: [],
+  joined: [],
+  available: true
+}]
+
 var talks = [{
   id: "2548dd",
   firstname_with: "Yasmina",
@@ -52,23 +85,15 @@ var talks = [{
 }]
 
 const PORT = process.env.PORT || 3005
-// const urlDB = process.env.urlDB || 'mongodb://localhost:27017/test'
+//const urlDB = process.env.urlDB || 'mongodb://localhost:27017/test'
 
-// mongoose.connect(urlDB)
+mongoose.Promise = Promise
+//mongoose.connect(URL_DB, {useMongoClient: true})
 
 app.set('view engine', 'pug')
 
 app.use(express.static( path.join(__dirname,'public')))
 
-app.use(cookieSession({
-  name: 'myCookieSession',
-  keys: ['sdg156da8gearg15df56', '5s6sfdf56g6fv2s6aav1']
-}))
-
-app.use((req, res, next) => {
-  //req.session.loggedIn = req.session.loggedIn || false
-  next()
-})
 
 app.get('/user/:id', (req,res) => {
   res.json(users)
@@ -94,17 +119,13 @@ app.get('/user', (req,res) => {
     res.render('pages/user')
 })
 
-app.get('/user#!/login', (req,res) => {
-    res.redirect('/login')
-})
-
 app.get('/login', (req,res) => {
   res.render('pages/login')
 })
 
 app.post('/login', (req,res) => {
   res.cookie('loggedIn', true)
-  res.redirect('/')
+  res.redirect('user')
 })
 
 app.get('/logout', (req,res) => {
