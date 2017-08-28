@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const cookieSession = require('cookie-session')
+const bodyParser = require('body-parser')
 
 const app = express()
 
@@ -85,14 +86,54 @@ var talks = [{
 }]
 
 const PORT = process.env.PORT || 3005
-//const urlDB = process.env.urlDB || 'mongodb://localhost:27017/test'
+const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
 
 mongoose.Promise = Promise
-//mongoose.connect(URL_DB, {useMongoClient: true})
+mongoose.connect(urlDB, {useMongoClient: true})
+console.log(`db connected to ${urlDB}`)
+
+const User = require('./models/User')
+const Talk = require('./models/Talk')
 
 app.set('view engine', 'pug')
 
 app.use(express.static( path.join(__dirname,'public')))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.get('/api/user/:firstname', (req, res) => {
+  var {firstname} = req.params
+  User.find({firstname})
+    .then( user => {
+      console.log(user)
+      res.json(user)
+    })
+})
+
+app.put('/api/user/:id/newlanguage/:language/:level', (req, res) => {
+  var {id, language, level} = req.params
+  User.findByIdAndUpdate(id, {$push: { languages: {language: language, level: level}}}, { safe:true, upsert: true }, function (err, data) {
+            return res.send(data);
+        })
+})
+
+app.put('/api/user/:id/remove/:language', (req, res) => {
+  var {id, language} = req.params
+  console.log(id, language)
+  User.findByIdAndUpdate(id, { $pull: { languages: {language: language} } })
+    .then((err, data)=> {
+      return res.send(data)
+    })
+})
+
+app.post('/api/user/update', (req, res) => {
+  var { _id, firstname, lastname, age, country, about, email, password} = req.body
+  console.log( _id, firstname, lastname, age, country, about, email, password )
+  User.findByIdAndUpdate(_id, { $set: { firstname:firstname, lastname:lastname, age:age, country:country, about:about, email:email, password:password } }, function (err, tank) {
+    if (err) return handleError(err);
+    res.redirect('/user#!/profile')
+  })
+})
 
 
 app.get('/user/:id', (req,res) => {

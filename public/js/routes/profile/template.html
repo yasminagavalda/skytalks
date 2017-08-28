@@ -11,37 +11,38 @@
             <!-- edit form column-->
             <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
                 <div ng-hide="{{ show }}" class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Changes saved <strong>successfully</strong></div>
-                <form role="form" class="form-horizontal" action="user" method="POST">
+                <form role="form" class="form-horizontal" action="/api/user/update" method="POST">
+                    <input value="{{ user._id }}" name="_id" type="text" class="form-control hidden"/>
                     <legend>Personal info</legend>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.firstname }}" type="text" class="form-control"/>
+                            <input value="{{ user.firstname }}" name="firstname" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Last name:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.lastname }}" type="text" class="form-control"/>
+                            <input value="{{ user.lastname }}" name="lastname" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Age:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.age }}" type="text" class="form-control"/>
+                            <input value="{{ user.age }}" name="age" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Country:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.country }}" type="text" class="form-control"/>
+                            <input value="{{ user.country }}" name="country" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Languages:</label>
                         <div class="col-lg-8">
                             <ul class="languages-li">
-                                <li ng-repeat="language in languages"><label class="control-label">{{language.language}}:</label> {{language.level}} <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="remove-lang btn mybutton btn-md"><i class="glyphicon glyphicon-remove"></i></button></li>
+                                <li ng-repeat="language in languages"><label class="control-label" ng-model="lang">{{language.language}}:</label> {{language.level}} <button type="button" ng-click="removeLanguage(user._id, language.language)" class="remove-lang btn mybutton btn-md"><i class="glyphicon glyphicon-remove"></i></button></li>
                             </ul>
                         </div>
                     </div>
@@ -59,33 +60,33 @@
                                 <option>Native</option>
                             </select>
                             <span class="input-group-btn">
-                                <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="check btn mybutton btn-md"><i class="glyphicon glyphicon-ok"></i></button>
+                                <button type="button" ng-click="addLanguage(user._id, newlanguage, newlevel)" class="check btn mybutton btn-md"><i class="glyphicon glyphicon-ok"></i></button>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">About me:</label>
                         <div class="col-lg-8">
-                            <textarea class="form-control">{{ user.about }}</textarea>
+                            <textarea class="form-control" name="about" >{{ user.about }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.email }}" type="email" class="form-control"/>
+                            <input value="{{ user.email }}" name="email" type="email" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Password:</label>
                         <div class="new-lang col-lg-8">
-                            <input type="{{type}}" value="iamapassword" class="form-control password"/>
+                            <input type="{{type}}" name="password" value="{{user.password}}" class="form-control password"/>
                             <span class="input-group-btn showpass">
                                 <button type="button" ng-click="showPassword()"  class="btn btn-default reveal"><i class="glyphicon glyphicon-eye-open"></i></button>
                             </span>
                         </div>
                     </div>
                 
-                <button type="button" ng-click="showAlert()" class="btn mybutton btn-md">Save changes</button>
+                <button type="submit" class="btn mybutton btn-md">Save changes</button>
                     
                 </form>
             </div>

@@ -7,9 +7,9 @@ var TalkSchema = new mongoose.Schema({
   level: String,
   place: String,
   date: Date,
-  creator: { type: Schema.ObjectId, ref: "User" }, 
-  joiners: [{ type: Schema.ObjectId, ref: "User" }],
-  joined: [{ type: Schema.ObjectId, ref: "User" }],
+  creator: { type: mongoose.Schema.ObjectId, ref: "User" }, 
+  joiners: { type: mongoose.Schema.ObjectId, ref: "User" },
+  joined: { type: mongoose.Schema.ObjectId, ref: "User" },
   available: Boolean
 }, { collection })
 

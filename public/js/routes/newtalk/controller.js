@@ -11,7 +11,7 @@ angular.module('skytalksApp')
 
         $scope.createNewTalk = function(newlanguage, newplace, newdate) {
         	console.log(newlanguage, newplace, newdate)
-          $location.path('/talks')
+          $location.path('/')
         }
       	// $scope.apply()
       })

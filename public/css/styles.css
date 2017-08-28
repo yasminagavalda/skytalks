@@ -23,6 +23,10 @@
     margin-bottom: 80px;
 }
 
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    z-index: 0;
+}
+
 /*---------------- HEADER ----------------*/
 
 .navbar {

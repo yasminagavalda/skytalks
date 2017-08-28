@@ -2,21 +2,30 @@ angular.module('skytalksApp')
     
     .controller('usersController', function ($scope, usersService, $window) {
 
-      usersService.getInfo('userId')
+      usersService.getInfo('Paul')
         .then(function (response) {
-          $scope.user = response
-          $scope.languages = response.languages
-          console.log($scope.languages)
-
+          $scope.user = response[0]
+          $scope.languages = response[0].languages
         })
 
-      //$scope.languages = usersService.getLanguages('userId')
       
 
-      $scope.addLanguage = function (newlanguage, newlevel) {
-      	$scope.languages.push({language: newlanguage, level: newlevel})
-        $scope.newlanguage = ''
-        $scope.newlevel = ''
+      $scope.addLanguage = function (id, newlanguage, newlevel) {
+        usersService.addNewLanguage(id, newlanguage, newlevel)
+          .then(function (response) {
+            console.log(response[0].languages)
+
+          	//$scope.languages = response[0].languages
+           //  $scope.newlanguage = ''
+           //  $scope.newlevel = ''
+          })
+      }
+
+      $scope.removeLanguage = function (id, language) {
+        usersService.removeLanguage(id, language)
+          .then(function(response) {
+            console.log(response[0].languages)
+          })
       }
 
 
@@ -28,6 +37,14 @@ angular.module('skytalksApp')
           $scope.type = "password"
         }
       }
+
+      // $scope.updateProfile = function(arguments) {
+      //   console.log(arguments)
+      //   usersService.updateProfile(arguments)
+      //     .then(function(response) {
+      //       console.log(response)
+      //     })
+      // }
 
 
     })
