@@ -5,7 +5,7 @@ block content
     .login
       .container
         .wrapper
-          form.form-signin(action='login', method='POST', name='Login_Form')
+          form.form-signin(action='api/login', method='POST', name='Login_Form')
             h3.form-signin-heading Please Sign In
             hr.colorgraph
             br
@@ -15,4 +15,4 @@ block content
             br
             button.btn.btn-lg.mybutton.btn-block(name='Submit', value='Login', type='Submit') Login
             br
-            a.register(name='Submit', value='Login', type='Submit', onclick="location.href='register';") Register
+            a.register(name='Submit', value='Login', type='Submit') Register

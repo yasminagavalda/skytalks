@@ -2,21 +2,19 @@ angular.module('skytalksApp')
 
     .factory('usersService', function($http) {
 
-        var getInfo = function(firstname) {
-            var url = 'api/user/' + firstname
+        var getInfo = function(id) {
+            var url = 'api/user/' + id
             return $http.get(url)
                 .then(function(response) {
-                    console.log(response)
                     return response.data
                 })
         }
 
-        var getLanguages = function(userId, callback) {
-            var url = 'user/' + userId
-            $http.get(url)
+        var getLanguages = function(userId) {
+            var url = 'api/user/' + userId
+            return $http.get(url)
                 .then(function(response) {
-                    console.log(response)
-                    callback(response.data.languages)
+                    return response.data.languages
                 })
         }
 

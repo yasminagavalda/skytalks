@@ -101,20 +101,34 @@ app.use(express.static( path.join(__dirname,'public')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/api/user/:firstname', (req, res) => {
-  var {firstname} = req.params
-  User.find({firstname})
-    .then( user => {
-      console.log(user)
-      res.json(user)
+app.post('/api/register', (req, res) => {
+  var {firstname, email, password} = req.body
+  User.create({firstname, email, password}, (err, user) => {
+    res.redirect('/login')
+  })
+})
+
+app.post('/api/login', (req, res) => {
+  var {email, password} = req.body
+  User.find({email})
+    .then((user) => {
+      const id = user[0]._id
+      res.cookie('loggedIn', true).cookie('id', id).redirect('/user')
     })
+})
+
+app.get('/api/user/:id', (req, res) => {
+  var {id} = req.params
+  User.findById(id, (err, user) => {
+    res.json(user)
+  })
 })
 
 app.put('/api/user/:id/newlanguage/:language/:level', (req, res) => {
   var {id, language, level} = req.params
   User.findByIdAndUpdate(id, {$push: { languages: {language: language, level: level}}}, { safe:true, upsert: true }, function (err, data) {
-            return res.send(data);
-        })
+      return res.send(data);
+  })
 })
 
 app.put('/api/user/:id/remove/:language', (req, res) => {
@@ -130,15 +144,11 @@ app.post('/api/user/update', (req, res) => {
   var { _id, firstname, lastname, age, country, about, email, password} = req.body
   console.log( _id, firstname, lastname, age, country, about, email, password )
   User.findByIdAndUpdate(_id, { $set: { firstname:firstname, lastname:lastname, age:age, country:country, about:about, email:email, password:password } }, function (err, tank) {
-    if (err) return handleError(err);
     res.redirect('/user#!/profile')
   })
 })
 
 
-app.get('/user/:id', (req,res) => {
-  res.json(users)
-})
 
 app.get('/talk/:id', (req,res) => {
   res.json(talks)
