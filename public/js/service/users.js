@@ -20,6 +20,7 @@ angular.module('skytalksApp')
 
         var addNewLanguage = function(id, newlanguage, newlevel) {
             var url = '/api/user/' + id + '/newlanguage/' + newlanguage + '/' + newlevel
+            console.log(id, newlanguage, newlevel)
             return $http.put(url)
                 .then(function(response) {
                     window.location.reload()

@@ -43,7 +43,7 @@
                         <label class="col-lg-3 control-label">Languages:</label>
                         <div class="col-lg-8">
                             <ul class="languages-li">
-                                <li ng-repeat="language in languages"><label class="control-label" ng-model="lang">{{language.language}}:</label> {{language.level}} <button type="button" ng-click="removeLanguage(user._id, language.language)" class="remove-lang btn mybutton btn-md"><i class="glyphicon glyphicon-remove"></i></button></li>
+                                <li ng-repeat="language in languages"><label class="control-label" ng-model="lang">{{language.language}}:</label> {{language.level}} <button type="button" ng-click="removeLanguage(language.language)" class="remove-lang btn mybutton btn-md"><i class="glyphicon glyphicon-remove"></i></button></li>
                             </ul>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 <option>Native</option>
                             </select>
                             <span class="input-group-btn">
-                                <button type="button" ng-click="addLanguage(user._id, newlanguage, newlevel)" class="check btn mybutton btn-md"><i class="glyphicon glyphicon-ok"></i></button>
+                                <button type="button" ng-click="addLanguage(newlanguage, newlevel)" class="check btn mybutton btn-md"><i class="glyphicon glyphicon-ok"></i></button>
                             </span>
                         </div>
                     </div>

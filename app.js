@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const cookieSession = require('cookie-session')
 const bodyParser = require('body-parser')
+const moment = require('moment')
 
 const app = express()
 
@@ -142,7 +143,6 @@ app.put('/api/user/:id/remove/:language', (req, res) => {
 
 app.post('/api/user/update', (req, res) => {
   var { _id, firstname, lastname, age, country, about, email, password} = req.body
-  console.log( _id, firstname, lastname, age, country, about, email, password )
   User.findByIdAndUpdate(_id, { $set: { firstname:firstname, lastname:lastname, age:age, country:country, about:about, email:email, password:password } }, function (err, tank) {
     res.redirect('/user#!/profile')
   })
@@ -152,12 +152,31 @@ app.post('/api/newtalk', (req, res) => {
   var { id, newlanguage, date, place} = req.body
   const language = newlanguage.split(':')[0]
   const level = newlanguage.split(':')[1]
-  Talk.create({date, place, language, level, creator: id}, (err, user) => {
+  Talk.create({date, place, language, level, creator: id, available:true}, (err, user) => {
     res.redirect('/user#!')
   })
-
 })
 
+app.get('/api/talks-confirmed/:id', (req, res) => {
+  var {id} = req.params
+  Talk.find({creator: id, joined:id, available: false}, (err, user) => {
+    res.json(user)    
+  })
+})
+
+app.get('/api/talks-waiting-partner/:id', (req, res) => {
+  var {id} = req.params
+  Talk.find({creator: id, available: true}, (err, user) => {
+    res.json(user)    
+  })
+})
+
+app.get('/api/talks-waiting-response/:id', (req, res) => {
+  var {id} = req.params
+  Talk.find({joiners: id, available: true}, (err, user) => {
+    res.json(user)    
+  })
+})
 
 
 app.get('/talk/:id', (req,res) => {
@@ -169,7 +188,13 @@ app.get('/results', (req,res) => {
 })
 
 app.get('/', (req,res) => {
-  res.render('pages/home')
+  Talk.find({available: true})
+    .limit(3)
+    .then (talks => {
+
+      res.render('pages/home', {talks})
+    })
+  
 })
 
 app.get('/details', (req,res) => {

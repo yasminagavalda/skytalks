@@ -18,14 +18,14 @@
                             <!-- flight section -->
                             <div class="bhoechie-tab-content active">
                                 <div class="showtalks">
-                                    <div class="row" ng-repeat="talk in talks">
+                                    <div class="row" ng-repeat="talk in talksconfirmed">
                                         <div class="list-group">
                                             <div class="list-group-item">
                                                 <div class="show-events">
                                                     <div class="text-center date-body" style="width:150px">
-                                                      <label for="" class="date-title">August 2017</label>
+                                                      <label for="" class="date-title">{{talk.date | date:'MMMM'}}</label>
                                                       <div class="date-content">
-                                                        <p class="dia">10</p>
+                                                        <p class="dia">{{talk.date | date:'d'}}</p>
                                                       </div>
                                                     </div>
                                                
@@ -35,8 +35,7 @@
                                                     <div class="row-content">
                                                         <div class="list-group-item-heading">
                                                             <h4>{{ talk.language}}</h4>
-                                                            <h5>6:30 PM</h5>
-                                                            <h5>Talk with {{ talk.firstname_with}}</h5>
+                                                            <h5>{{talk.date | date:'h:mm a'}}</h5>
                                                             <h6>{{talk.place}}</h6>
                                                             <button class="btn btn-danger">Cancel talk</button>  
                                                         </div>
@@ -50,43 +49,18 @@
                             </div>
                             <!-- train section -->
                             <div class="bhoechie-tab-content">
-                                <div class="show-events">
+                                <div class="show-events" ng-repeat="talk in talksWaitingPartner">
                                     <div class="text-center date-body" style="width:150px">
-                                        <label for="" class="date-title">September 2017</label>
+                                        <label for="" class="date-title">{{talk.date | date:'MMMM'}}</label>
                                         <div class="date-content">
-                                            <p class="dia">10</p>
+                                            <p class="dia">{{talk.date | date:'d'}}</p>
                                         </div>
                                     </div>
                                     <div class="row-content">
                                         <div class="list-group-item-heading">
-                                            <h4>English</h4>
-                                            <h5>6:30 PM</h5>
-                                            <h6>Skylab, Carrer Roc Boronat 35, Barcelona</h6>
-                                            <h5>Choose a Partner:</h5>
-                                            <div class="row-picture">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                            </div>
-                                            <button class="btn btn-danger">Cancel talk</button>
-                                        </div>
-                                        <hr>
-                                    </div>                                    
-                                    
-                                </div>
-                                <div class="show-events">
-                                    <div class="text-center date-body" style="width:150px">
-                                        <label for="" class="date-title">September 2017</label>
-                                        <div class="date-content">
-                                            <p class="dia">10</p>
-                                        </div>
-                                    </div>
-                                    <div class="row-content">
-                                        <div class="list-group-item-heading">
-                                            <h4>English</h4>
-                                            <h5>6:30 PM</h5>
-                                            <h6>Skylab, Carrer Roc Boronat 35, Barcelona</h6>
+                                            <h4>{{ talk.language}}</h4>
+                                            <h5>{{talk.date | date:'h:mm a'}}</h5>
+                                            <h6>{{talk.place}}</h6>
                                             <h5>Choose a Partner:</h5>
                                             <div class="row-picture">
                                                 <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
@@ -102,15 +76,15 @@
                             </div>
                             <div class="bhoechie-tab-content">
                                 <div class="showtalks">
-                                    <div class="row" ng-repeat="talk in talks">   
+                                    <div class="row" ng-repeat="talk in talksWaitingResponse">   
                                         <div>
                                             <div class="list-group">
                                                 <div class="list-group-item">
                                                     <div class="show-events">
                                                         <div class="text-center date-body" style="width:150px">
-                                                          <label for="" class="date-title">August 2017</label>
+                                                          <label for="" class="date-title">{{talk.date | date:'MMMM'}}</label>
                                                           <div class="date-content">
-                                                            <p class="dia">10</p>
+                                                            <p class="dia">{{talk.date | date:'d'}}</p>
                                                           </div>
                                                         </div>
                                                         <div class="row-picture">
@@ -119,8 +93,7 @@
                                                         <div class="row-content">
                                                             <div class="list-group-item-heading">
                                                                 <h4>{{talk.language}}</h4> 
-                                                                <h5>6:30 PM</h5>
-                                                                <h5>Waiting for {{talk.firstname_with}}...</h5>
+                                                                <h5>{{talk.date | date:'h:mm a'}}</h5>
                                                                 <h6>{{talk.place}}</h6>  
                                                                 <button class="btn btn-danger">Cancel talk</button>
                                                             </div>

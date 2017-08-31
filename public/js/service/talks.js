@@ -11,7 +11,37 @@ angular.module('skytalksApp')
                 })
         }
 
+        var getMyTalksConfirmed = function(id) {
+            var url = 'api/talks-confirmed/' + id
+            return $http.get(url)
+                .then(function(response) {
+                    console.log(response)
+                    return response.data
+                })
+        }
+
+        var getMyTalksWaitingPartner = function(id) {
+            var url = 'api/talks-waiting-partner/' + id
+            return $http.get(url)
+                .then(function(response) {
+                    console.log(response)
+                    return response.data
+                })
+        }
+
+        var getMyTalksWaitingResponse = function(id) {
+            var url = 'api/talks-waiting-response/' + id
+            return $http.get(url)
+                .then(function(response) {
+                    console.log(response)
+                    return response.data
+                })
+        }
+
         return {
-            createTalk:createTalk
+            createTalk:createTalk,
+            getMyTalksConfirmed:getMyTalksConfirmed,
+            getMyTalksWaitingPartner:getMyTalksWaitingPartner,
+            getMyTalksWaitingResponse:getMyTalksWaitingResponse
         }
     })
