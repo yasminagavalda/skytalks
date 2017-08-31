@@ -5,19 +5,28 @@ angular.module('skytalksApp')
       var id = $cookies.get('id').split(':')[1]
       id = id.substr(1, id.length-2)
 
-      usersService.getInfo(id)
-        .then(function (response) {
-          $scope.user = response
-          $scope.languages = response.languages
-        })
+      if ($cookies.get('loggedIn') === 'true') {
+          
+        usersService.getInfo(id)
+          .then(function (response) {
+            $scope.user = response
+            $scope.languages = response.languages
+          })
+      } else {
+        $window.location.href = "/login"
+      }
 
       
 
-      $scope.addLanguage = function (id, newlanguage, newlevel) {
+      
+
+      
+
+      $scope.addLanguage = function (newlanguage, newlevel) {
         usersService.addNewLanguage(id, newlanguage, newlevel)
       }
 
-      $scope.removeLanguage = function (id, language) {
+      $scope.removeLanguage = function (language) {
         usersService.removeLanguage(id, language)
       }
 

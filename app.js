@@ -148,6 +148,16 @@ app.post('/api/user/update', (req, res) => {
   })
 })
 
+app.post('/api/newtalk', (req, res) => {
+  var { id, newlanguage, date, place} = req.body
+  const language = newlanguage.split(':')[0]
+  const level = newlanguage.split(':')[1]
+  Talk.create({date, place, language, level, creator: id}, (err, user) => {
+    res.redirect('/user#!')
+  })
+
+})
+
 
 
 app.get('/talk/:id', (req,res) => {

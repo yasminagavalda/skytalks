@@ -1,7 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 const collection = 'users'
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
   firstname: String,
   lastname: String,
   age: Number,
@@ -14,9 +16,9 @@ var UserSchema = new mongoose.Schema({
     language: String, 
     level: String
   }],
-  confirmed: [{ type: mongoose.Schema.ObjectId, ref: "Talk"}],
-  created: [{ type: mongoose.Schema.ObjectId, ref: "Talk" }],
-  joined: [{ type: mongoose.Schema.ObjectId, ref: "Talk" }]
+  confirmed: [{ type: ObjectId, ref: "Talk"}],
+  created: [{ type: ObjectId, ref: "Talk" }],
+  joined: [{ type: ObjectId, ref: "Talk" }]
 }, { collection })
 
 module.exports = mongoose.model('User', UserSchema);

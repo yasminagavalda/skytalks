@@ -1,23 +1,24 @@
 angular.module('skytalksApp')
-    .controller('newTalkController', function ($cookies, $scope, usersService, $location) {
+    .controller('newTalkController', function ($cookies, $scope, usersService, talksService, $location) {
       
       var id = $cookies.get('id').split(':')[1]
       id = id.substr(1, id.length-2)
 
-      
-      usersService.getLanguages(id)
+      if ($cookies.get('loggedIn') === 'true') {
+          
+        usersService.getLanguages(id)
         .then(function(languages) {
           $scope.languages = languages
-        })      
-      
-      
-
-
-      $scope.createNewTalk = function(newlanguage, newplace, newdate) {
-        	console.log(newlanguage, newplace, newdate)
-          $location.path('/')
+          $scope.id = id
+        })
+      } else {
+        $window.location.href = "/login"
       }
-      	// $scope.apply()
+      
+      
+      $scope.createTalk = function() {
+        talksService.createTalk()	
+      }
     })
     
       

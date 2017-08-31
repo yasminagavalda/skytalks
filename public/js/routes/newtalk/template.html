@@ -1,14 +1,15 @@
 <div class="body">
     <div class="newtalk">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="api/newtalk" method="POST">
             <fieldset>
                 <legend>New talk meeting</legend>
+                <input value="{{ id }}" name="id" type="text" class="form-control hidden"/>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="OC">Language: </label>
                     <div class="col-md-4">
-                        <select id="OC" name="OC" class="form-control" ng-model="newlanguage">
+                        <select id="OC" class="form-control" name="newlanguage">
                             <option value="" disabled selected>Select language</option>
-                            <option ng-repeat="language in languages">{{language.language}}</option>
+                            <option ng-repeat="language in languages">{{language.language}}:{{language.level}}</option>
                         </select>
                     </div>
                 </div>
@@ -16,21 +17,21 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Place: </label>  
                     <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="text" placeholder="Enter a place..." ng-model="newplace" class="form-control input-md">
+                        <input id="textinput" type="text" placeholder="Enter a place..." name="place" class="form-control input-md">
                     </div>
                 </div>
 
                 <div class="form-group"> <!-- Date input -->
                     <label class="col-md-4 control-label" for="date">Date and time: </label>
                     <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="datetime-local" placeholder="" ng-model="newdate" class="form-control input-md">
+                        <input id="textinput" name="date" type="datetime-local" placeholder="" class="form-control input-md">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="button1id"></label>
                     <div class="col-md-8">
-                        <button id="button1id" name="button1id" ng-click="createNewTalk(newlanguage, newplace, newdate)" class="btn mybutton">Create talk meeting</button>
+                        <button type="submit" id="button1id" class="btn mybutton">Create talk meeting</button>
                     </div>
                 </div>
 
