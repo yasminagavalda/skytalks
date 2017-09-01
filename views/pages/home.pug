@@ -31,5 +31,5 @@ block content
                   h3= talk.creator.firstname
                   p wants to talk in #{talk.language}
                   p on #{talk.date.toDateString()}
-                  button.btn.mybutton(onclick="window.location.href='/details'") Show details
+                  button.btn.mybutton.showdetails(data-id=talk._id) Show details
           

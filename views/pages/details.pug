@@ -14,43 +14,43 @@ block content
             .form-group
               label.col-md-3.control-label First name:
               .col-md-8
-                p Jane
+                p= talk.creator.firstname
             .form-group
               label.col-md-3.control-label Last name:
               .col-md-8
-                p Bishop
+                p= talk.creator.lastname
             .form-group
               label.col-md-3.control-label Age:
               .col-md-8
-                p 32
+                p= talk.creator.age
             .form-group
               label.col-md-3.control-label Nationality:
               .col-md-8
-                p British
+                p= talk.creator.country
             .form-group
-              label.col-md-3.control-label About Jane:
+              label.col-md-3.control-label About #{talk.creator.firstname}:
               .col-md-8
-                p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est nemo aspernatur vitae soluta cum tenetur omnis animi porro, hic quos aliquam reprehenderit eos nostrum obcaecati quo nesciunt repudiandae quam assumenda?
+                p= talk.creator.about
       .form-horizontal(role='form')
         .form-group
           label.col-md-3.control-label Language:
           .col-md-6
-            p Russian
+            p= talk.language
         .form-group
           label.col-md-3.control-label Level:
           .col-md-6
-            p Medium
+            p= talk.level
         .form-group
           label.col-md-3.control-label Place:
           .col-md-6
-            p Le Journal, Carrer de Francisco Giner 36, Barcelona
+            p= talk.place
         .form-group
           label.col-md-3.control-label Date:
           .col-md-6
-            p Wednesday September 20, 6:30 PM
+            p= talk.date.toDateString()
         .form-group
           label.col-md-3.control-label
           .col-md-6
-            button.join.btn.mybutton.btn-md(onclick="window.location.href='/user'") Join!
+            button.join.btn.mybutton.btn-md.jointalk(data-id=talk._id) Join!
 
             

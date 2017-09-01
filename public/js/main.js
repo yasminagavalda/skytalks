@@ -8,3 +8,14 @@ $(document).ready(function() {
     
   });
 });
+
+
+$('.showdetails').click(function() {
+  var id = $(this).attr('data-id')
+  $(location).attr('href', '/talk/' + id)
+})
+
+$('.jointalk').click(function() {
+  var id = $(this).attr('data-id')
+  $(location).attr('href', 'talk/' + id)
+})

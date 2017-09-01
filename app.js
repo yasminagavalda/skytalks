@@ -173,14 +173,32 @@ app.get('/api/talks-waiting-partner/:id', (req, res) => {
 
 app.get('/api/talks-waiting-response/:id', (req, res) => {
   var {id} = req.params
-  Talk.find({joiners: id, available: true}, (err, user) => {
-    res.json(user)    
+  Talk.find({joiners: id, available: true})
+    .populate('creator')
+    .then (talks => {
+      res.json(user) 
+    })
+       
   })
-})
+
 
 
 app.get('/talk/:id', (req,res) => {
-  res.json(talks)
+  var {id} = req.params
+  Talk.findById(id)
+    .populate('creator')
+    .then(talk => {
+      console.log(talk)
+      res.render('pages/details', {talk})
+    })
+})
+
+app.put('/api/join/:id', (req,res) => {
+  var {id} = req.params
+  var user = req.cookie('id')
+  User.findByIdAndUpdate(user, { $push: { joined: id} }, function (err, tank) {
+    res.redirect('/user#!')
+  })
 })
 
 app.get('/results', (req,res) => {
@@ -190,15 +208,10 @@ app.get('/results', (req,res) => {
 app.get('/', (req,res) => {
   Talk.find({available: true})
     .limit(3)
-    .then (talks => {
-
+    .populate('creator')
+    .then(talks => {
       res.render('pages/home', {talks})
     })
-  
-})
-
-app.get('/details', (req,res) => {
-  res.render('pages/details')
 })
 
 app.get('/user', (req,res) => {
