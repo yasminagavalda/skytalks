@@ -17,5 +17,12 @@ $('.showdetails').click(function() {
 
 $('.jointalk').click(function() {
   var id = $(this).attr('data-id')
-  $(location).attr('href', 'talk/' + id)
+  $.ajax({
+    url: '/api/join/' + id,
+    method: 'PUT'
+  })
+  .then( data => {
+    $(location).attr('href', '/user#!/')
+  } )
 })
+

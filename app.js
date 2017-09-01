@@ -7,85 +7,6 @@ const moment = require('moment')
 
 const app = express()
 
-var users = {
-  "id": "2548dd", 
-  "username": "ygava", 
-  "firstname": "Pepe", 
-  "lastname": "Gavaldà", 
-  "age": "26", 
-  "country": "Spain", 
-  "email": "y.gava@gmail.com", 
-  "languages": [{
-    "language": "English", 
-    "level": "Native"
-  }, 
-  {
-    "language": "Spanish", 
-    "level": "Medium"
-  }, 
-  {
-    "language": "Russian", 
-    "level": "Advanced"
-  }], 
-  "about": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-}
-
-var talks1 = [{
-  _id: "2548dd",
-  language: "English",
-  level: "Advanced",
-  place: "Le Journal, Carrer de Francisco Giner 36, Barcelona",
-  date: "Tuesday August 20",
-  creator: "Yasmina",
-  joiners: ["Javier", "Paul", "Maria"],
-  joined: [],
-  available: true
-}, 
-{
-  _id: "2548dd",
-  language: "French",
-  level: "Medium",
-  place: "Skylab, Roc Boronat 35, Barcelona",
-  date: "Wednesday August 22",
-  creator: "Yasmina",
-  joiners: ["John", "Mery"],
-  joined: [],
-  available: true
-},
-{
-  _id: "2548dd",
-  language: "Arabian",
-  level: "Native",
-  place: "Moog, Arc del Teatre 3, Barcelona",
-  date: "Friday August 25",
-  creator: "Yasmina",
-  joiners: [],
-  joined: [],
-  available: true
-}]
-
-var talks = [{
-  id: "2548dd",
-  firstname_with: "Yasmina",
-  language: "English",
-  date: "Tuesday August 20",
-  place: "Le Journal, Carrer de Francisco Giner 36, Barcelona"
-}, 
-{
-  id: "2548dd",
-  firstname_with: "Maria",
-  language: "Spanish",
-  date: "Monday August 25",
-  place: "Le Journal, Carrer de Francisco Giner 36, Barcelona"
-},
-{
-  id: "2548dd",
-  firstname_with: "Paul",
-  language: "French",
-  date: "Wednesday August 26",
-  place: "Le Journal, Carrer de Francisco Giner 36, Barcelona"
-}]
-
 const PORT = process.env.PORT || 3005
 const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
 
@@ -148,18 +69,9 @@ app.post('/api/user/update', (req, res) => {
   })
 })
 
-app.post('/api/newtalk', (req, res) => {
-  var { id, newlanguage, date, place} = req.body
-  const language = newlanguage.split(':')[0]
-  const level = newlanguage.split(':')[1]
-  Talk.create({date, place, language, level, creator: id, available:true}, (err, user) => {
-    res.redirect('/user#!')
-  })
-})
-
 app.get('/api/talks-confirmed/:id', (req, res) => {
   var {id} = req.params
-  Talk.find({creator: id, joined:id, available: false}, (err, user) => {
+  Talk.find({creator: id, joined: id, available: false}, (err, user) => {
     res.json(user)    
   })
 })
@@ -176,12 +88,20 @@ app.get('/api/talks-waiting-response/:id', (req, res) => {
   Talk.find({joiners: id, available: true})
     .populate('creator')
     .then (talks => {
-      res.json(user) 
+      res.json(talks) 
     })
        
   })
 
-
+app.post('/api/newtalk', (req, res) => {
+  var { id, newlanguage, date, place} = req.body
+  const language = newlanguage.split(':')[0]
+  const level = newlanguage.split(':')[1]
+  Talk.create({date, place, language, level, creator: id, available:true})
+    .then((err, data)=> {
+      return res.redirect('/user#!')
+    })
+})
 
 app.get('/talk/:id', (req,res) => {
   var {id} = req.params
@@ -195,9 +115,10 @@ app.get('/talk/:id', (req,res) => {
 
 app.put('/api/join/:id', (req,res) => {
   var {id} = req.params
-  var user = req.cookie('id')
-  User.findByIdAndUpdate(user, { $push: { joined: id} }, function (err, tank) {
-    res.redirect('/user#!')
+  console.log(id)
+  var userId = '59a7ff51b3041c41bc090810'
+  Talk.findByIdAndUpdate(id, { $push: { joiners: userId} }, { safe:true, upsert: true }, function (err, data) {
+      return res.send(data);
   })
 })
 
