@@ -4,8 +4,8 @@
   "description": "![Logo](img/logo.png)",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app"
+    "start": "node server/app",
+    "dev": "nodemon server/app"
   },
   "engines": {
     "node": "6.11.2"

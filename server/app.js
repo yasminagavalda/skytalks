@@ -9,17 +9,19 @@ const app = express()
 
 const PORT = process.env.PORT || 3005
 const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
-
+//
 mongoose.Promise = Promise
 mongoose.connect(urlDB, {useMongoClient: true})
-console.log(`db connected to ${urlDB}`)
 
-const User = require('./models/User')
-const Talk = require('./models/Talk')
+
+const User = require(__dirname + '/models/User.js')
+const Talk = require(__dirname + '/models/Talk')
+
+app.set('views', path.resolve('server/views'))
 
 app.set('view engine', 'pug')
 
-app.use(express.static( path.join(__dirname,'public')))
+app.use(express.static( path.join(__dirname,'../public')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -115,8 +117,8 @@ app.get('/talk/:id', (req,res) => {
 
 app.put('/api/join/:id', (req,res) => {
   var {id} = req.params
-  console.log(id)
-  var userId = '59a7ff51b3041c41bc090810'
+  var userId = "59a7ff51b3041c41bc090810"
+  console.log(userId)
   Talk.findByIdAndUpdate(id, { $push: { joiners: userId} }, { safe:true, upsert: true }, function (err, data) {
       return res.send(data);
   })
