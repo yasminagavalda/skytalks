@@ -6,7 +6,7 @@ angular.module('skytalksApp')
 
 
    
-      if ($cookies.get('loggedIn') === 'true') {
+      // if ($cookies.get('loggedIn') === 'true') {
       	  
 	      talksService.getMyTalksConfirmed(id)
 	        .then(function (response) {
@@ -22,9 +22,9 @@ angular.module('skytalksApp')
 	        .then(function (response) {
 	            $scope.talksWaitingResponse = response
 	        })
-	  } else {
-	  	$window.location.href = "/login"
-	  }
+	  // } else {
+	  // 	$window.location.href = "/login"
+	  // }
 
 
     })

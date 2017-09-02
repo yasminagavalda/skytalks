@@ -1,45 +1,75 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const path = require('path')
-const cookieSession = require('cookie-session')
-const bodyParser = require('body-parser')
-const moment = require('moment')
 
 const app = express()
 
+/* Environment Variables */
 const PORT = process.env.PORT || 3005
 const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
-//
+
+/* Mongoose */
+const mongoose = require('mongoose')
 mongoose.Promise = Promise
 mongoose.connect(urlDB, {useMongoClient: true})
 
+/* Mongoose models */
+const User = require(path.join(__dirname, '/models/User'))
+const Talk = require(path.join(__dirname, '/models/Talk'))
 
-const User = require(__dirname + '/models/User.js')
-const Talk = require(__dirname + '/models/Talk')
-
+/* App settings */
 app.set('views', path.resolve('server/views'))
-
 app.set('view engine', 'pug')
 
-app.use(express.static( path.join(__dirname,'../public')))
+/* Passport Load */
+const LocalStrategy = require('passport-local').Strategy
+const passport = require('./config/passport/')
+app.use(passport.initialize())
+
+/* Json Web Token */
+var jwt = require('jsonwebtoken')
+
+/* Static Path */
+app.use(express.static( path.join(__dirname,'../client')))
+
+
+/* bodyParser */
+const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+/* API */
 app.post('/api/register', (req, res) => {
-  var {firstname, email, password} = req.body
-  User.create({firstname, email, password}, (err, user) => {
-    res.redirect('/login')
+  const {email, password} = req.body
+  const user = new User({username: email})
+  User.register(user, password, err => {
+    if (err) {
+      return res.redirect('/register-user')
+    }
+    res.redirect('/user#!/profile')
   })
 })
 
-app.post('/api/login', (req, res) => {
-  var {email, password} = req.body
-  User.find({email})
-    .then((user) => {
-      const id = user[0]._id
-      res.cookie('loggedIn', true).cookie('id', id).redirect('/user')
-    })
-})
+app.post('/api/login', passport.authenticate('local', {
+  successRedirect: '/user',
+  failureRedirect: '/login-user',
+  session: false
+}))
+
+
+  // passport.authenticate('local', { session: false }), (req, res) => {
+  // const SECRET = process.env.SECRET
+  // const { _id: id, username } = req.user
+
+  // const token = jwt.sign({ id, username }, SECRET)
+
+  //  res.json({success: true, token: token})
+  // var {email, password} = req.body
+  // User.find({email})
+  //   .then((user) => {
+  //     const id = user[0]._id
+  //     res.cookie('loggedIn', true).cookie('id', id).redirect('/user')
+  //   })
+// })
 
 app.get('/api/user/:id', (req, res) => {
   var {id} = req.params
@@ -142,7 +172,11 @@ app.get('/user', (req,res) => {
 })
 
 app.get('/login', (req,res) => {
-  res.render('pages/login')
+  res.render('pages/login', {wrongdata:false})
+})
+
+app.get('/login-user', (req,res) => {
+  res.render('pages/login', {wrongdata:true})
 })
 
 app.post('/login', (req,res) => {
@@ -156,7 +190,11 @@ app.get('/logout', (req,res) => {
 })
 
 app.get('/register', (req,res) => {
-  res.render('pages/register')
+  res.render('pages/register', {userexists: false})
+})
+
+app.get('/register-user', (req,res) => {
+  res.render('pages/register', {userexists: true})
 })
 
 

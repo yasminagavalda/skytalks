@@ -8,10 +8,13 @@ block content
           form.form-signin(action='api/register', method='POST', name='Login_Form')
             h3.form-signin-heading Register
             hr.colorgraph
+            if userexists
+              .alert.alert-danger.alert-dismissable
+                a.panel-close.close(data-dismiss='alert') ×
+                i.fa.fa-coffee
+                |         Email already exists.
             br
-            input.form-control(type='text', name='firstname', placeholder='Name', required='', autofocus='')
-            br
-            input.form-control(type='email', name='email', placeholder='Email', required='', autofocus='')
+            input.form-control(type='email', name='username', placeholder='Email', required='', autofocus='')
             br
             .input-group
               input.form-control.password(type='password', name='password', value='iamapassword')
