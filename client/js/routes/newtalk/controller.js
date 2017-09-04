@@ -1,12 +1,12 @@
 angular.module('skytalksApp')
-    .controller('newTalkController', function ($cookies, $scope, usersService, talksService, $location) {
-      
-      var id = $cookies.get('id').split(':')[1]
-      id = id.substr(1, id.length-2)
+    .controller('newTalkController', function ($scope, $rootScope, UsersService, StorageService, TalksService, $location) {
 
-      if ($cookies.get('loggedIn') === 'true') {
+      if (StorageService.getToken()) {
+
+        const tokenPayload = jwt_decode(StorageService.getToken());
+        $rootScope.userId = tokenPayload.id
           
-        usersService.getLanguages(id)
+        UsersService.getLanguages($rootScope.userId)
         .then(function(languages) {
           $scope.languages = languages
           $scope.id = id
@@ -17,7 +17,7 @@ angular.module('skytalksApp')
       
       
       $scope.createTalk = function() {
-        talksService.createTalk()	
+        TalksService.createTalk()	
       }
     })
     

@@ -10,7 +10,7 @@
             </div>
             <!-- edit form column-->
             <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-                <div ng-show='{{ show }}' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Changes saved <strong>successfully</strong></div>
+                <div ng-show='show' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Changes saved <strong>successfully</strong></div>
                 <div ng-show='showLanguage' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Language saved <strong>successfully</strong></div>
                 <form role="form" class="form-horizontal" action="/api/user/update" method="POST">
                     <input value="{{ user._id }}" name="_id" type="text" class="form-control hidden"/>
@@ -77,16 +77,7 @@
                             <input value="{{ user.username }}" name="email" type="email" class="form-control"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Password:</label>
-                        <div class="new-lang col-lg-8">
-                            <input type="{{type}}" name="password" value="{{user.password}}" class="form-control password"/>
-                            <span class="input-group-btn showpass">
-                                <button type="button" ng-click="showPassword()"  class="btn btn-default reveal"><i class="glyphicon glyphicon-eye-open"></i></button>
-                            </span>
-                        </div>
-                    </div>
-                
+                    
                 <button type="submit" ng-click="showAlert()" class="btn mybutton btn-md">Save changes</button>
                     
                 </form>

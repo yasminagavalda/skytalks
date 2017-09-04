@@ -1,6 +1,6 @@
 angular.module('skytalksApp')
 
-    .factory('talksService', function($http) {
+    .factory('TalksService', function($http, $rootScope) {
 
         var createTalk = function() {
             var url = 'api/newtalk'
@@ -11,8 +11,8 @@ angular.module('skytalksApp')
                 })
         }
 
-        var getMyTalksConfirmed = function(id) {
-            var url = 'api/talks-confirmed/' + id
+        var getMyTalksConfirmed = function() {
+            var url = 'api/talks-confirmed/' + $rootScope.userId
             return $http.get(url)
                 .then(function(response) {
                     console.log(response)
@@ -20,8 +20,8 @@ angular.module('skytalksApp')
                 })
         }
 
-        var getMyTalksWaitingPartner = function(id) {
-            var url = 'api/talks-waiting-partner/' + id
+        var getMyTalksWaitingPartner = function() {
+            var url = 'api/talks-waiting-partner/' + $rootScope.userId
             return $http.get(url)
                 .then(function(response) {
                     console.log(response)
@@ -29,8 +29,9 @@ angular.module('skytalksApp')
                 })
         }
 
-        var getMyTalksWaitingResponse = function(id) {
-            var url = 'api/talks-waiting-response/' + id
+        var getMyTalksWaitingResponse = function() {
+            var url = 'api/talks-waiting-response/' + $rootScope.userId
+            console.log($rootScope.userId)
             return $http.get(url)
                 .then(function(response) {
                     console.log(response)

@@ -7,5 +7,6 @@ angular.module('skytalksApp')
               controller: 'talksController'
             })
     })
+    
 
 

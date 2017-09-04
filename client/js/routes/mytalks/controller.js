@@ -1,31 +1,39 @@
 angular.module('skytalksApp')
-    .controller('talksController', function ($scope, $window, usersService, talksService, $cookies) {
+    .controller('talksController', function($window, $scope, $location, UsersService, TalksService, AuthService, StorageService, $rootScope) {
 
-      var id = $cookies.get('id').split(':')[1]
-      id = id.substr(1, id.length-2)
+        function setCredentials(token) {
+            const tokenPayload = jwt_decode(token);
+            $rootScope.loggedUser = tokenPayload.username
+            $rootScope.userId = tokenPayload.id
+        }
 
+        console.log($rootScope.userId)
 
-   
-      // if ($cookies.get('loggedIn') === 'true') {
-      	  
-	      talksService.getMyTalksConfirmed(id)
-	        .then(function (response) {
-	            $scope.talksconfirmed = response
-	        })
+        if ($location.absUrl().length > 30) {
+            const token = $location.absUrl().split('=')[1].split('#')[0]
+            StorageService.saveToken(token)
+            setCredentials(token)
+        }
 
-	      talksService.getMyTalksWaitingPartner(id)
-	        .then(function (response) {
-	            $scope.talksWaitingPartner = response
-	        })
+        if (StorageService.getToken()) {
 
-	      talksService.getMyTalksWaitingResponse(id)
-	        .then(function (response) {
-	            $scope.talksWaitingResponse = response
-	        })
-	  // } else {
-	  // 	$window.location.href = "/login"
-	  // }
+            TalksService.getMyTalksConfirmed($rootScope.userId)
+                .then(function(response) {
+                    $scope.talksconfirmed = response
+                })
+
+            TalksService.getMyTalksWaitingPartner($rootScope.userId)
+                .then(function(response) {
+                    $scope.talksWaitingPartner = response
+                })
+
+            TalksService.getMyTalksWaitingResponse($rootScope.userId)
+                .then(function(response) {
+                    $scope.talksWaitingResponse = response
+                })
+        } else {
+            $window.location.href = "/login"
+        }
 
 
     })
-      

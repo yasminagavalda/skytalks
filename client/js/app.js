@@ -1,4 +1,5 @@
-angular.module('skytalksApp', ['ngRoute', 'ngCookies'])
+angular.module('skytalksApp', ['ngRoute'])
+
 
 // /* global angular */
 // (function () {

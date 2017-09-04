@@ -1,34 +1,34 @@
 angular.module('skytalksApp')
 
-    .factory('usersService', function($http) {
+    .factory('UsersService', function($http, $rootScope) {
 
-        var getInfo = function(id) {
-            var url = 'api/user/' + id
+        var getInfo = function() {
+            var url = 'api/user/' + $rootScope.userId
+            console.log($rootScope.userId)
             return $http.get(url)
                 .then(function(response) {
                     return response.data
                 })
         }
 
-        var getLanguages = function(userId) {
-            var url = 'api/user/' + userId
+        var getLanguages = function() {
+            var url = 'api/user/' + $rootScope.userId
             return $http.get(url)
                 .then(function(response) {
                     return response.data.languages
                 })
         }
 
-        var addNewLanguage = function(id, newlanguage, newlevel) {
-            var url = '/api/user/' + id + '/newlanguage/' + newlanguage + '/' + newlevel
-            console.log(id, newlanguage, newlevel)
+        var addNewLanguage = function(newlanguage, newlevel) {
+            var url = '/api/user/' + $rootScope.userId + '/newlanguage/' + newlanguage + '/' + newlevel
             return $http.put(url)
                 .then(function(response) {
                     window.location.reload()
                 })
         }
 
-        var removeLanguage = function(id, language) {
-            var url = '/api/user/' + id + '/remove/' + language
+        var removeLanguage = function(language) {
+            var url = '/api/user/' + $rootScope.userId + '/remove/' + language
             return $http.put(url)
                 .then(function(response) {
                     console.log('ok')
@@ -41,12 +41,11 @@ angular.module('skytalksApp')
             return $http.put(url)
                 .then(function(response) {
                     console.log('ok')
-                    window.location.reload()
                 })
         }
 
-        var getTalks = function(userId) {
-            var url = 'talk/' + userId
+        var getTalks = function() {
+            var url = 'talk/' + $rootScope.userId
             return $http.get(url)
                 .then(function(response) {
                     console.log(response)
@@ -58,8 +57,8 @@ angular.module('skytalksApp')
             getInfo: getInfo,
             getLanguages: getLanguages,
             getTalks: getTalks,
-            addNewLanguage:addNewLanguage,
-            removeLanguage:removeLanguage,
-            updateProfile:updateProfile
+            addNewLanguage: addNewLanguage,
+            removeLanguage: removeLanguage,
+            updateProfile: updateProfile
         }
     })

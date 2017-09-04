@@ -64,18 +64,16 @@ app.get('/login-fail', (req, res) => {
     res.redirect('/login?err=true')
 })
 
-app.get('/logout', (req, res) => {
-    res.cookie('loggedIn', false)
-    res.redirect('/')
+app.get('/register-fail', (req, res) => {
+    res.redirect('/register?err=true')
 })
+
 
 app.get('/register', (req, res) => {
-    res.render('pages/register', { userexists: false })
+    const err = req.query.err
+    res.render('pages/register', { userexists: err })
 })
 
-app.get('/register-user', (req, res) => {
-    res.render('pages/register', { userexists: true })
-})
 
 /* forms handling */
 
@@ -84,22 +82,27 @@ app.post('/register', (req, res) => {
     const user = new User({ username: email })
     User.register(user, password, err => {
         if (err) {
-            return res.redirect('/register-user')
+            return res.redirect('/register-fail')
+        } else {
+          res.redirect('/login')
         }
-        res.redirect('/user#!/profile')
     })
 })
 
 app.post('/login', passport.authenticate('local', { failureRedirect: '/login-fail', session: false }),
     function(req, res) {
-        res.redirect('/user');
+        const { _id: id, username } = req.user
+        const token = jwt.sign({ id, username }, 'SECRET')
+        res.redirect('/user?token=' + token)
     })
 
 /* API handling */
 
 app.get('/api/user/:id', (req, res) => {
     var { id } = req.params
+    console.log(id)
     User.findById(id, (err, user) => {
+      console.log(user)
         res.json(user)
     })
 })
@@ -122,9 +125,8 @@ app.put('/api/user/:id/remove/:language', (req, res) => {
 
 app.post('/api/user/update', (req, res) => {
     var { _id, firstname, lastname, age, country, about, email, password } = req.body
-    User.findByIdAndUpdate(_id, { $set: { firstname: firstname, lastname: lastname, age: age, country: country, about: about, email: email, password: password } }, function(err, tank) {
-        res.redirect('/user#!/profile')
-    })
+    User.findByIdAndUpdate(_id, { $set: { firstname: firstname, lastname: lastname, age: age, country: country, about: about, email: email, password: password } })
+      .then(() => res.redirect('/user#!/profile'))
 })
 
 app.get('/api/talks-confirmed/:id', (req, res) => {
