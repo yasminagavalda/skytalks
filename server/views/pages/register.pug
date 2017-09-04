@@ -5,7 +5,7 @@ block content
     .login
       .container
         .wrapper
-          form.form-signin(action='api/register', method='POST', name='Login_Form')
+          form.form-signin(action='register', method='POST', name='Login_Form')
             h3.form-signin-heading Register
             hr.colorgraph
             if userexists
@@ -14,7 +14,7 @@ block content
                 i.fa.fa-coffee
                 |         Email already exists.
             br
-            input.form-control(type='email', name='username', placeholder='Email', required='', autofocus='')
+            input.form-control(type='email', name='email', placeholder='Email', required='', autofocus='')
             br
             .input-group
               input.form-control.password(type='password', name='password', value='iamapassword')
@@ -22,7 +22,7 @@ block content
                 button.btn.btn-default.reveal(type='button')
                   i.glyphicon.glyphicon-eye-open
             br
-            button.btn.btn-lg.mybutton.btn-block(name='Submit', value='Login', type='Submit') Register
+            button.btn.btn-lg.mybutton.btn-block(value='Login', type='Submit') Register
 
 
 
