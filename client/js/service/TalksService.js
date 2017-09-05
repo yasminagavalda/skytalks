@@ -31,7 +31,6 @@ angular.module('skytalksApp')
 
         var getMyTalksWaitingResponse = function() {
             var url = 'api/talks-waiting-response/' + $rootScope.userId
-            console.log($rootScope.userId)
             return $http.get(url)
                 .then(function(response) {
                     console.log(response)

@@ -55,14 +55,14 @@ app.get('/user', (req, res) => {
     res.render('pages/user')
 })
 
-app.get('/login', (req, res) => {
-    const err = req.query.err
-    res.render('pages/login', { wrongdata: err })
-})
+// app.get('/login', (req, res) => {
+//     const err = req.query.err
+//     res.render('pages/login', { wrongdata: err })
+// })
 
-app.get('/login-fail', (req, res) => {
-    res.redirect('/login?err=true')
-})
+// app.get('/login-fail', (req, res) => {
+//     res.redirect('/login?err=true')
+// })
 
 app.get('/register-fail', (req, res) => {
     res.redirect('/register?err=true')
@@ -84,18 +84,17 @@ app.post('/register', (req, res) => {
         if (err) {
             return res.redirect('/register-fail')
         } else {
-          res.redirect('/login')
+          res.redirect('user#!/login')
         }
     })
 })
 
-app.post('/login', passport.authenticate('local', { failureRedirect: '/login-fail', session: false }),
-    function(req, res) {
-        const { _id: id, username } = req.user
-        const token = jwt.sign({ id, username }, 'SECRET')
-        res.redirect('/user?token=' + token)
-    })
-
+app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+  const SECRET = process.env.SECRET || 'secret'
+  const { _id: id, username } = req.user
+  const token = jwt.sign({ id, username }, SECRET)
+  res.json({success: true, token: token})
+})
 /* API handling */
 
 app.get('/api/user/:id', (req, res) => {
@@ -173,11 +172,11 @@ app.get('/talk/:id', (req, res) => {
         })
 })
 
-app.put('/api/join/:id', (req, res) => {
+app.put('/api/join/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     var { id } = req.params
-    var userId = "59a7ff51b3041c41bc090810"
-    console.log(userId)
-    Talk.findByIdAndUpdate(id, { $push: { joiners: userId } }, { safe: true, upsert: true }, function(err, data) {
+    console.log()
+    console.log(req.user, 'hello')
+    Talk.findByIdAndUpdate(id, { $push: { joiners: '87654321' } }, { safe: true, upsert: true }, function(err, data) {
         return res.send(data);
     })
 })

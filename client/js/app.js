@@ -1,30 +1,27 @@
-angular.module('skytalksApp', ['ngRoute'])
+//angular.module('skytalksApp', ['ngRoute', 'angular-jwt'])
 
 
-// /* global angular */
-// (function () {
-//   angular.module('skytalksApp', ['ngRoute', 'toastr', 'angular-jwt'])
-//   .config(function ($httpProvider) {
-//     $httpProvider.interceptors.push('AuthInterceptor')
-//   })
-//   .config(function ($routeProvider) {
-//     $routeProvider
-//       .otherwise('/login')
-//   })
-//   .run(function ($rootScope, $location, StorageService, AuthService) {
-//     if (AuthService.isLoggedIn()) {
-//       const token = StorageService.getToken()
-//       AuthService.setCredentials(token)
-//     }
+angular.module('skytalksApp', ['ngRoute', 'angular-jwt'])
+    .config(function ($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptor')
+  })
+  .config(function ($routeProvider) {
+    $routeProvider
+      .otherwise('/login')
+  })
+  .run(function ($rootScope, $location, StorageService, AuthService) {
+    if (AuthService.isLoggedIn()) {
+      const token = StorageService.getToken()
+      AuthService.setCredentials(token)
+    }
 
-//     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-//       console.log('route has changed')
-//       if (next && next.secure) {
-//         console.log('this route is secured!!')
-//         if (!AuthService.isLoggedIn()) {
-//           $location.path('/login')
-//         }
-//       }
-//     })
-//   })
-// })()
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      console.log('route has changed')
+      if (next && next.secure) {
+        console.log('this route is secured!!')
+        if (!AuthService.isLoggedIn()) {
+          $location.path('/login')
+        }
+      }
+    })
+  })

@@ -1,26 +1,38 @@
 angular.module('skytalksApp')
 
-    .factory('AuthService', function($http, StorageService, $rootScope) {
+    .factory('AuthService', function($rootScope, $http, StorageService, jwtHelper) {
 
-        const isLoggedIn = function () {
-		    const token = StorageService.getToken()
-		    console.log(token, 'hol')
-		    if (!token) return false
-		    return true
-		}
+    function isLoggedIn () {
+      const token = StorageService.getToken()
+      if (!token) return false
+     	return true
+    }
 
-		const setCredentials = function (token) {
-	        const tokenPayload = jwtHelper.decodeToken(token)
-	        $rootScope.loggedUser = tokenPayload.username
-	    }
+    function setCredentials (token) {
+      const tokenPayload = jwtHelper.decodeToken(token)
+      $rootScope.loggedUser = tokenPayload.username
+    }
 
-	    const logout = function () {
-	        StorageService.removeToken()
-	        delete $rootScope.loggedUser
-	        delete $rootScope.id
+    function register (username, password) {
+      return $http.post('/register', {username, password})
+                .then(res => res.data)
+    }
 
+    function login (username, password) {
+      return $http.post('/login', {username, password})
+                .then(res => res.data)
+                .then(data => {
+                  console.log(data)
+                  StorageService.saveToken(data.token)
+                  setCredentials(data.token)
+                  return data.success
+                })
+    }
 
-	    }
+    function logout (username, password) {
+      StorageService.removeToken()
+      delete $rootScope.loggedUser
+    }
 
-	    return { isLoggedIn, setCredentials, logout }
-	})
+    return { register, login, isLoggedIn, setCredentials, logout }
+  })

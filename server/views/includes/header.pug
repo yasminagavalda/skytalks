@@ -11,7 +11,7 @@ nav.navbar.navbar-default.navbar-fixed-top
         li(ng-repeat='navoption in navoptions')
           a(href='{{ navoption.route }}') {{ navoption.title }}
         li(ng-hide='{{ isLoggedIn }}')
-          a(href='login') SIGN IN
+          a(href='/user#!/login') SIGN IN
         li(ng-hide='{{ isLoggedIn }}')
           a(href='register') REGISTER
         li(ng-show='{{ isLoggedIn }}')

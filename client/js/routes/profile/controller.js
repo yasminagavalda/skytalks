@@ -1,10 +1,13 @@
 angular.module('skytalksApp')
     
-    .controller('usersController', function ($scope, $rootScope, UsersService, StorageService, $window) {
-      
-      if (StorageService.getToken()) {
+    .controller('usersController', function (AuthService, jwtHelper, $scope, $rootScope, UsersService, StorageService, $window) {
 
-        const tokenPayload = jwt_decode(StorageService.getToken());
+      if (!AuthService.isLoggedIn()) {
+          $location.path('/login')
+        }
+
+        const token = StorageService.getToken()
+        const tokenPayload = jwtHelper.decodeToken(token)
         $rootScope.userId = tokenPayload.id
           
         UsersService.getInfo($rootScope.userId)
@@ -12,12 +15,10 @@ angular.module('skytalksApp')
             $scope.user = response
             $scope.languages = response.languages
           })
-      } else {
-        $window.location.href = "/login"
-      }
 
       $scope.addLanguage = function (newlanguage, newlevel) {
         UsersService.addNewLanguage(newlanguage, newlevel)
+        $scope.showLanguage = true
       }
 
       $scope.removeLanguage = function (language) {

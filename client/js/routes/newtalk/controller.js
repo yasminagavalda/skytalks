@@ -1,20 +1,20 @@
 angular.module('skytalksApp')
-    .controller('newTalkController', function ($scope, $rootScope, UsersService, StorageService, TalksService, $location) {
+    .controller('newTalkController', function (AuthService, jwtHelper, $scope, $rootScope, UsersService, StorageService, TalksService, $location) {
 
-      if (StorageService.getToken()) {
+      if (!AuthService.isLoggedIn()) {
+          $location.path('/login')
+        }
 
-        const tokenPayload = jwt_decode(StorageService.getToken());
+        const token =StorageService.getToken()
+        const tokenPayload = jwtHelper.decodeToken(token)
         $rootScope.userId = tokenPayload.id
           
         UsersService.getLanguages($rootScope.userId)
         .then(function(languages) {
           $scope.languages = languages
-          $scope.id = id
+          $scope.id = $rootScope.userId
         })
-      } else {
-        $window.location.href = "/login"
-      }
-      
+
       
       $scope.createTalk = function() {
         TalksService.createTalk()	
