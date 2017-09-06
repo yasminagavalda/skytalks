@@ -34,10 +34,40 @@ angular.module('skytalksApp')
                 })
         }
 
+        var joinedPartner = function (partnerId, talkId) {
+            var url = 'api/talk/' + talkId + '/partner/' + partnerId
+            console.log('service')
+            return $http.put(url)
+                .then(function() {
+                    window.location.reload()
+                })
+        }
+
+        var cancelTalk = function (talkId) {
+            var url = 'api/cancel/talk/' + talkId
+            console.log('service')
+            return $http.delete(url)
+                .then(function() {
+                    window.location.reload()
+                })
+        }
+
+        var unjoinTalk = function (talkId, userId) {
+            var url = 'api/unjoin/' + userId + '/talk/' + talkId
+            console.log('service')
+            return $http.put(url)
+                .then(function() {
+                    window.location.reload()
+                })
+        }
+
         return {
             createTalk,
             getMyTalksConfirmed,
             getMyTalksWaitingPartner,
-            getMyTalksWaitingResponse
+            getMyTalksWaitingResponse,
+            joinedPartner,
+            cancelTalk,
+            unjoinTalk
         }
     })

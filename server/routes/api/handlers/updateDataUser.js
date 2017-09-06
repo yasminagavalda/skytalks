@@ -2,7 +2,7 @@ const User = __require('/models/User')
 
 function updateDataUser (req, res) {
   var { _id, firstname, lastname, age, country, about, email, password } = req.body
-  User.findByIdAndUpdate(_id, { $set: { firstname: firstname, lastname: lastname, age: age, country: country, about: about, email: email, password: password } })
+  User.findByIdAndUpdate(_id, { $set: { firstname, lastname, age, country, about, email } })
       .then(() => res.redirect('/user#!/profile'))
 }
 

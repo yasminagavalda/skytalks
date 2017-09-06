@@ -36,4 +36,16 @@ angular.module('skytalksApp')
           $scope.talksWaitingResponse = response
         })
 
+      $scope.choosePartner = function(partnerId, talkId) {
+        TalksService.joinedPartner(partnerId, talkId)
+      }
+
+      $scope.cancelTalk = function(talkId) {
+        TalksService.cancelTalk(talkId)
+      }
+
+      $scope.unjoin = function(talkId) {
+        TalksService.unjoinTalk(talkId, $rootScope.userId)
+      }
+
     })

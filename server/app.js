@@ -6,7 +6,7 @@ const path = require('path')
 const app = express()
 
 /* Environment Variables */
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3003
 const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
 
 /* Mongoose */
