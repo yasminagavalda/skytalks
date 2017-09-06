@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const router = express.Router()
 
 const getDetailsUser = require('./handlers/getDetailsUser')
@@ -15,7 +16,7 @@ router.get('/user/:id', getDetailsUser)
 router.put('/user/:id/newlanguage/:language/:level', addLanguage)
 router.put('/user/:id/remove/:language', removeLanguage)
 router.post('/user/update', updateDataUser)
-router.put('/image/update/:image', updateImage)
+router.put('/user/:id/update/image', updateImage)
 
 router.get('/talks-confirmed/:id', getConfirmedTalks)
 router.get('/talks-waiting-partner/:id', getWaitingPartnerTalks)

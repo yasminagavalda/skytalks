@@ -1,10 +1,12 @@
 const User = __require('/models/User')
 
 function updateImage (req, res) {
-  var { image } = req.params
-  var { id } = req.user
-  console.log(id, image)
-  User.findByIdAndUpdate(id, { $set: { image } })
+  console.log('hol')
+  var { image } = req.body
+  const { id } = req.params
+  console.log(image, id)
+  User.findByIdAndUpdate( id, { $set: { image } })
+  	.then('ok')
 }
 
 module.exports = updateImage

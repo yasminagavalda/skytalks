@@ -6,7 +6,6 @@ const collection = 'users'
 var UserSchema = new Schema({
   firstname: String,
   lastname: String,
-  age: Number,
   country: String,
   image: String,
   email: String,

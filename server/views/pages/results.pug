@@ -54,12 +54,14 @@ block content
     .container.results
       h3.list-results Talks in #{language}:
       br
+      if talks.length === 0
+        p.list-results No results found...
       ul.thumbnails
         each talk, i in talks
           li.span4.col-xs-12.col-md-4
             .thumbnail
               .img-thumbnail
-                img(src='img/default-user-image.png')
+                img(src=talk.creator.image)
                 h3= talk.creator.firstname
               .caption
                 p Language: #{talk.language}

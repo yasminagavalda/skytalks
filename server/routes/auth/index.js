@@ -5,12 +5,17 @@ const passport = __require('config/passport/')
 
 const showLogin = require('./handlers/showLogin')
 const handleLogin = require('./handlers/handleLogin')
+const handleLoginFail = require('./handlers/handleLoginFail')
 const showRegister = require('./handlers/showRegister')
 const handleRegister = require('./handlers/handleRegister')
+const handleRegisterFail = require('./handlers/handleRegisterFail')
 
 router.get('/login', showLogin)
-router.post('/login', passport.authenticate('local', { session: true }), handleLogin)
+router.get('/login-fail', handleLoginFail)
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login-fail', session: true }), handleLogin)
 router.get('/register', showRegister)
 router.post('/register', handleRegister)
+router.get('/register-fail', handleRegisterFail)
+
 
 module.exports = router

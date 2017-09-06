@@ -7,7 +7,7 @@ block content
         // left column
         .col-md-4.col-sm-6.col-xs-12
           .text-center
-            img.avatar.img-circle.img-thumbnail(src='img/default-user-image.png', alt='avatar')
+            img.avatar.img-circle.img-thumbnail(src=talk.creator.image)
         .col-md-8.col-sm-6.col-xs-12.personal-info
           br
           .form-horizontal(role='form')
@@ -48,9 +48,10 @@ block content
           label.col-md-3.control-label Date:
           .col-md-6
             p= talk.date.toDateString()
-        .form-group
-          label.col-md-3.control-label
-          .col-md-6
-            a.join.btn.mybutton.btn-md.jointalk(href='/join/' + talk._id) Join!
+        if user
+          .form-group
+            label.col-md-3.control-label
+            .col-md-6
+              a.join.btn.mybutton.btn-md.jointalk(href='/join/' + talk._id) Join!
 
             

@@ -5,6 +5,7 @@ function showHome (req, res) {
   Talk.find({ available: true })
     .limit(3)
     .populate('creator')
+    .sort({date: -1})
     .then(talks => {
       res.render('pages/home', { talks, user })
     })

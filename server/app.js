@@ -6,7 +6,7 @@ const path = require('path')
 const app = express()
 
 /* Environment Variables */
-const PORT = process.env.PORT || 3005
+const PORT = process.env.PORT || 3001
 const urlDB = process.env.urlDB || 'mongodb://localhost:27017/skytalks'
 
 /* Mongoose */
@@ -53,17 +53,10 @@ app.use(bodyParser.json())
 app.use(require('./routes/auth/'))
 app.use(require('./routes/front/'))
 app.use('/api', require('./routes/api/'))
-
-/* navigation handling */
-
-// app.get('/results', (req, res) => {
-//   res.render('pages/results', { talks })
-// })
+app.use(require('./routes/cloudinary/'))
 
 
-// app.get('/login-fail', (req, res) => {
-//     res.redirect('/login?err=true')
-// })
+
 
 // app.get('/register-fail', (req, res) => {
 //   res.redirect('/register?err=true')

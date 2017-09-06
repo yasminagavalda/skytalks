@@ -22,7 +22,6 @@ angular.module('skytalksApp')
       return $http.post('/login', {username, password})
                 .then(res => res.data)
                 .then(data => {
-                  console.log(data)
                   StorageService.saveToken(data.token)
                   setCredentials(data.token)
                   return data.success

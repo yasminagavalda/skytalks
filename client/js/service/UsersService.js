@@ -2,9 +2,19 @@ angular.module('skytalksApp')
 
     .factory('UsersService', function($http, $rootScope) {
 
+
+        function getData() {
+            var url = 'api/user/' + $rootScope.userId
+            return $http.get(url)
+                .then(function(response) {
+                    if (!response.data.firstname) return false
+                    return true
+                })
+        }
+
+
         var getInfo = function() {
             var url = 'api/user/' + $rootScope.userId
-            console.log($rootScope.userId)
             return $http.get(url)
                 .then(function(response) {
                     return response.data
@@ -31,7 +41,6 @@ angular.module('skytalksApp')
             var url = '/api/user/' + $rootScope.userId + '/remove/' + language
             return $http.put(url)
                 .then(function(response) {
-                    console.log('ok')
                     window.location.reload()
                 })
         }
@@ -40,15 +49,15 @@ angular.module('skytalksApp')
             var url = '/api/user/update'
             return $http.put(url)
                 .then(function(response) {
-                    console.log('ok')
                 })
         }
 
-        var addNewImage = function(image) {
-            var url = '/api/image/update/' + image
-            return $http.put(url)
+        var updateImage = function(image) {
+            var url = '/api/user/' + $rootScope.userId + '/update/image'
+            image = image.toString()            
+            return $http.put(url, {image})
                 .then(function(response) {
-                    console.log('image uploaded')
+                    window.location.reload()
                 })
         }
 
@@ -56,18 +65,18 @@ angular.module('skytalksApp')
             var url = 'talk/' + $rootScope.userId
             return $http.get(url)
                 .then(function(response) {
-                    console.log(response)
                     return response.data
                 })
         }
 
         return {
-            getInfo: getInfo,
-            getLanguages: getLanguages,
-            getTalks: getTalks,
-            addNewLanguage: addNewLanguage,
-            removeLanguage: removeLanguage,
-            updateProfile: updateProfile,
-            addNewImage:addNewImage
+            getInfo,
+            getLanguages,
+            getTalks,
+            addNewLanguage,
+            removeLanguage,
+            updateProfile,
+            getData,
+            updateImage
         }
     })

@@ -12,9 +12,9 @@ nav.navbar.navbar-default.navbar-fixed-top
           li 
             a Logged as #{user.username}
           li
-            a(href='/logout') LOGOUT
+            a(href='#' ng-click="logout()") LOGOUT
           li
-            a(href='/user') MY TALKS
+            a(href='/user#!') MY TALKS
           li
             a(href='/user#!/talk') NEW TALK
           li

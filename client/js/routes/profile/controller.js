@@ -1,29 +1,33 @@
 angular.module('skytalksApp')
     
-    .controller('usersController', function (AuthService, jwtHelper, $scope, $rootScope, UsersService, StorageService, $window) {
+    .controller('usersController', function (Upload, $location, AuthService, jwtHelper, $scope, $rootScope, UsersService, StorageService, $window) {
+
+      function setCredentials (token) {
+        const tokenPayload = jwtHelper.decodeToken(token)
+        $rootScope.loggedUser = tokenPayload.username
+        $rootScope.userId = tokenPayload.id
+      }
+
+      if ($location.absUrl().length > 50) {
+        const token = $location.absUrl().split('=')[1].split('#')[0]
+        StorageService.saveToken(token)
+        setCredentials(token)
+      }
 
       if (!AuthService.isLoggedIn()) {
-          $location.path('/login')
+          $window.location.href = '/login'
         }
 
+
+      const token = StorageService.getToken()
+      const tokenPayload = jwtHelper.decodeToken(token)
+      $rootScope.userId = tokenPayload.id
         
-            
-
-        const token = StorageService.getToken()
-        const tokenPayload = jwtHelper.decodeToken(token)
-        $rootScope.userId = tokenPayload.id
-          
-        UsersService.getInfo($rootScope.userId)
-          .then(function (response) {
-            $scope.user = response
-            $scope.languages = response.languages
-          })
-
-      // $scope.uploadImage = function (avatar) {
-      //   const image = $base64.encode(avatar)
-      //   console.log(image)
-      //   UsersService.addNewImage(image)
-      // }
+      UsersService.getInfo($rootScope.userId)
+        .then(function (response) {
+          $scope.user = response
+          $scope.languages = response.languages
+        })
 
       $scope.addLanguage = function (newlanguage, newlevel) {
         UsersService.addNewLanguage(newlanguage, newlevel)
@@ -38,6 +42,27 @@ angular.module('skytalksApp')
         $scope.show = true
       }
 
+      $scope.fileSelected = (files) => {
+        if (files && files.length) {
+          $scope.file = files[0];
+        }
+      }
 
-    })
+      $scope.uploadFile = function() {
+        const url = '/upload'
+        const file = $scope.file
+
+        Upload.upload({ url, file })
+          .success( ({imageLink}) => {
+            $scope.image = imageLink
+            console.log($scope.image)
+            UsersService.updateImage(imageLink)
+              .then('')
+          })
+
+
+      }
+
+  })
+
       

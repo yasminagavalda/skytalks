@@ -7,7 +7,7 @@ function handleRegister (req, res) {
     if (err) {
       return res.redirect('/register-fail')
     } else {
-      res.redirect('user#!/login')
+      res.redirect('/login')
     }
   })
 }
