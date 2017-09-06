@@ -261,6 +261,14 @@
 
 /*---------------- PROFILE ----------------*/
 
+.savechanges {
+    float: right;
+}
+
+.containbutton {
+    padding: 0px;
+}
+
 .profile {
     margin-bottom: 200px;
 }
@@ -343,6 +351,10 @@
 
 /*---------------- MY TALKS ----------------*/
 
+.show-joiner {
+    text-align: center;
+}
+
 .newtalk {
     margin-right: 2%;
     margin-left: 2%;
@@ -380,7 +392,7 @@
 
 .list-group .list-group-item .row-content {
     display: inline-block;
-    width: 80%;
+    /*width: 80%;*/
     min-height: 66px;
 }
 

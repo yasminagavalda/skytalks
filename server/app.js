@@ -56,14 +56,6 @@ app.use('/api', require('./routes/api/'))
 app.use(require('./routes/cloudinary/'))
 
 
-
-
-// app.get('/register-fail', (req, res) => {
-//   res.redirect('/register?err=true')
-// })
-
-
-
 /* API handling */
 
 app.post('/api/newtalk', (req, res) => {
@@ -76,15 +68,7 @@ app.post('/api/newtalk', (req, res) => {
         })
 })
 
-app.get('/talk/:id', (req, res) => {
-  var { id } = req.params
-  Talk.findById(id)
-        .populate('creator')
-        .then(talk => {
-          console.log(talk)
-          res.render('pages/details', { talk })
-        })
-})
+
 
 console.log(`Listening on port ${PORT}`)
 app.listen(PORT)

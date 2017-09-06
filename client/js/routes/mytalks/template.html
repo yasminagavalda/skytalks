@@ -63,14 +63,16 @@
                                                 <h5>{{talk.date | date:'h:mm a'}}</h5>
                                                 <h6>{{talk.place}}</h6>
                                                 <h5>Choose a Partner:</h5>
-                                                <div class="row-picture">
+                                                <div class="row-picture show-events">
                                                     <div ng-repeat="joiner in talk.joiners">
-                                                        <div class="show-events">
+                                                        <div class="show-joiner">
                                                             <img class="circle img-thumbnail img-box" src="{{joiner.image}}">
+                                                            <br>
                                                             <span>{{ joiner.firstname }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <br>
                                                 <button class="btn btn-danger">Cancel talk</button>
                                             </div>
                                             

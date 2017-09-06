@@ -2,6 +2,8 @@ angular.module('skytalksApp')
     
     .controller('usersController', function (Upload, $location, AuthService, jwtHelper, $scope, $rootScope, UsersService, StorageService, $window) {
 
+
+
       function setCredentials (token) {
         const tokenPayload = jwtHelper.decodeToken(token)
         $rootScope.loggedUser = tokenPayload.username
@@ -27,6 +29,10 @@ angular.module('skytalksApp')
         .then(function (response) {
           $scope.user = response
           $scope.languages = response.languages
+          if(!response.image) {
+            UsersService.updateImage('http://res.cloudinary.com/djtxc60sj/image/upload/v1504710538/skytalks/default-user-image.png')
+            $window.location.reload()
+          }
         })
 
       $scope.addLanguage = function (newlanguage, newlevel) {
@@ -57,7 +63,7 @@ angular.module('skytalksApp')
             $scope.image = imageLink
             console.log($scope.image)
             UsersService.updateImage(imageLink)
-              .then('')
+              .then(() => window.location.reload())
           })
 
 

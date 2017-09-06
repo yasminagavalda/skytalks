@@ -31,6 +31,8 @@ angular.module('skytalksApp')
     function logout (username, password) {
       StorageService.removeToken()
       delete $rootScope.loggedUser
+      return $http.get('/logout')
+                
     }
 
     return { register, login, isLoggedIn, setCredentials, logout }
