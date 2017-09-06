@@ -6,7 +6,7 @@ angular.module('skytalksApp')
         $rootScope.userId = tokenPayload.id
       }
 
-      if ($location.absUrl().length > 30) {
+      if ($location.absUrl().indexOf('?token=') !== -1) {
         const token = $location.absUrl().split('=')[1].split('#')[0]
         StorageService.saveToken(token)
         setCredentials(token)
