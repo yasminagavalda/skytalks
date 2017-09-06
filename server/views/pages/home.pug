@@ -68,7 +68,7 @@ block content
             li.span4.col-xs-12.col-md-4
               .thumbnail
                 .img-thumbnail
-                  img(src='img/default-user-image.png')
+                  img(src='{{talk.creator.image}}')
                 .caption
                   h3= talk.creator.firstname
                   p wants to talk in #{talk.language}
