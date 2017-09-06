@@ -44,6 +44,14 @@ angular.module('skytalksApp')
                 })
         }
 
+        var addNewImage = function(image) {
+            var url = '/api/image/update/' + image
+            return $http.put(url)
+                .then(function(response) {
+                    console.log('image uploaded')
+                })
+        }
+
         var getTalks = function() {
             var url = 'talk/' + $rootScope.userId
             return $http.get(url)
@@ -59,6 +67,7 @@ angular.module('skytalksApp')
             getTalks: getTalks,
             addNewLanguage: addNewLanguage,
             removeLanguage: removeLanguage,
-            updateProfile: updateProfile
+            updateProfile: updateProfile,
+            addNewImage:addNewImage
         }
     })

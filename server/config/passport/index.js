@@ -6,6 +6,9 @@ const jwtStrategy = require('./strategies/jwt')
 
 const User = require(path.join(__dirname, '../../models/User'))
 
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 passport.use(new LocalStrategy(User.authenticate()))
 passport.use(jwtStrategy)
 

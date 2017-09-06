@@ -6,6 +6,9 @@ angular.module('skytalksApp')
           $location.path('/login')
         }
 
+        
+            
+
         const token = StorageService.getToken()
         const tokenPayload = jwtHelper.decodeToken(token)
         $rootScope.userId = tokenPayload.id
@@ -15,6 +18,12 @@ angular.module('skytalksApp')
             $scope.user = response
             $scope.languages = response.languages
           })
+
+      // $scope.uploadImage = function (avatar) {
+      //   const image = $base64.encode(avatar)
+      //   console.log(image)
+      //   UsersService.addNewImage(image)
+      // }
 
       $scope.addLanguage = function (newlanguage, newlevel) {
         UsersService.addNewLanguage(newlanguage, newlevel)

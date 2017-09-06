@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  .body
+    .login
+      .container
+        .wrapper
+          form.form-signin(action='login', method='POST', name='Login_Form')
+            h3.form-signin-heading Please Sign In
+            hr.colorgraph
+            if wrongdata
+              .alert.alert-danger.alert-dismissable
+                a.panel-close.close(data-dismiss='alert') ×
+                i.fa.fa-coffee
+                |         Invalid username or password
+            br
+            input.form-control(type='text', name='username', placeholder='Email', required='', autofocus='')
+            br
+            input.form-control(type='password', name='password', placeholder='Password', required='')
+            br
+            button.btn.btn-lg.mybutton.btn-block(name='Submit', value='Login', type='Submit') Login
+            br
+            a.register(name='Submit', value='Login', type='Submit') Register

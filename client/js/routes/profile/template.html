@@ -3,10 +3,11 @@
         <div class="row">
             <!-- left column-->
             <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="text-center"><img src="../img/default-user-image.png" alt="avatar" class="avatar img-circle img-thumbnail"/>
+                <div class="text-center"><img ng-src="{{image}}" alt="avatar" class="avatar img-circle img-thumbnail"/>
                     <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block well well-sm"/>
+                    <input type="file" ng-model="avatar" class="text-center center-block well well-sm"/>
                 </div>
+                <button type="submit" ng-click="uploadImage(avatar)" img-upload class="btn mybutton btn-md">Upload image</button>
             </div>
             <!-- edit form column-->
             <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
@@ -51,7 +52,49 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Add new language:</label>
                         <div class="new-lang col-lg-8">
-                            <input type="text" id="new-language" ng-model="newlanguage" placeholder="Enter a language..." class="form-control nlanguage"/>
+                            <input type="text" id="new-language" list="languages" ng-model="newlanguage" placeholder="Enter a language..." class="form-control nlanguage"/>
+                            <datalist id="languages">
+                              <option value="Arabic"></option>
+                              <option value="Albanian"></option>
+                              <option value="Basque"></option>
+                              <option value="Belarusian"></option>
+                              <option value="Bosnian"></option>
+                              <option value="Breton"></option>
+                              <option value="Bulgarian"></option>
+                              <option value="Catalan"></option>
+                              <option value="Chechen"></option>
+                              <option value="Croatian"></option>
+                              <option value="Danish"></option>
+                              <option value="Dutch"></option>
+                              <option value="English"></option>
+                              <option value="Estonian"></option>
+                              <option value="Finish"></option>
+                              <option value="French"></option>
+                              <option value="Galician"></option>
+                              <option value="German"></option>
+                              <option value="Hungarian"></option>
+                              <option value="Icelandic"></option>
+                              <option value="Irish"></option>
+                              <option value="Italian"></option>
+                              <option value="Kazakh"></option>
+                              <option value="Latin"></option>
+                              <option value="Latvian"></option>
+                              <option value="Lithuanian"></option>
+                              <option value="Luxembourgish"></option>
+                              <option value="Macedonian"></option>
+                              <option value="Maltese"></option>
+                              <option value="Norwegian"></option>
+                              <option value="Occitan"></option>
+                              <option value="Polish"></option>
+                              <option value="Portuguese"></option>
+                              <option value="Romanian"></option>
+                              <option value="Russian"></option>
+                              <option value="Serbian"></option>
+                              <option value="Slovene"></option>
+                              <option value="Spanish"></option>
+                              <option value="Swedish"></option>
+                              <option value="Turkish"></option>
+                            </datalist>
                             <select id="new-language" ng-model="newlevel" name="OC" class="form-control level" placeholder="Select level">
                                 <option value="" disabled selected>Select level</option>
                                 <option>Begginer</option>

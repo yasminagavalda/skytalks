@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
 const collection = 'users'
 
 var UserSchema = new Schema({
@@ -11,7 +10,6 @@ var UserSchema = new Schema({
   country: String,
   image: String,
   email: String,
-  password: String,
   about: String,
   languages: [{
     language: String,

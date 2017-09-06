@@ -1,7 +1,7 @@
 //angular.module('skytalksApp', ['ngRoute', 'angular-jwt'])
 
 
-angular.module('skytalksApp', ['ngRoute', 'angular-jwt'])
+angular.module('skytalksApp', ['ngRoute', 'angular-jwt', 'ngFileUpload'])
     .config(function ($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor')
   })

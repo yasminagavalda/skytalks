@@ -10,10 +10,51 @@ block content
             h2 Find a talk meeting
             br
             #custom-search-input
-              form.input-group.col-md-12
-                input.form-control.input-lg(type='text', placeholder='Enter a language...')
+              form.input-group.col-md-12(action="results" method="POST")
+                input.form-control.input-lg(type='text', name="language" list="languages" placeholder='Enter a language...')
+                datalist#languages
+                  option(value='Arabic')
+                  option(value='Albanian')
+                  option(value='Basque')
+                  option(value='Belarusian')
+                  option(value='Bosnian')
+                  option(value='Breton')
+                  option(value='Bulgarian')
+                  option(value='Catalan')
+                  option(value='Chechen')
+                  option(value='Croatian')
+                  option(value='Danish')
+                  option(value='Dutch')
+                  option(value='English')
+                  option(value='Estonian')
+                  option(value='Finish')
+                  option(value='French')
+                  option(value='Galician')
+                  option(value='German')
+                  option(value='Hungarian')
+                  option(value='Icelandic')
+                  option(value='Irish')
+                  option(value='Italian')
+                  option(value='Kazakh')
+                  option(value='Latin')
+                  option(value='Latvian')
+                  option(value='Lithuanian')
+                  option(value='Luxembourgish')
+                  option(value='Macedonian')
+                  option(value='Maltese')
+                  option(value='Norwegian')
+                  option(value='Occitan')
+                  option(value='Polish')
+                  option(value='Portuguese')
+                  option(value='Romanian')
+                  option(value='Russian')
+                  option(value='Serbian')
+                  option(value='Slovene')
+                  option(value='Spanish')
+                  option(value='Swedish')
+                  option(value='Turkish')
                 span.input-group-btn
-                  button.btn.btn-info.btn-lg(type='button' onclick="window.location.href='/results'")
+                  button.btn.btn-info.btn-lg(type='submit')
                     i.glyphicon.glyphicon-search
     br
     br
@@ -30,6 +71,6 @@ block content
                 .caption
                   h3= talk.creator.firstname
                   p wants to talk in #{talk.language}
-                  p on #{talk.date.toDateString()}
+                  p= talk.date.toDateString()
                   button.btn.mybutton.showdetails(data-id=talk._id) Show details
           

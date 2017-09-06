@@ -49,29 +49,35 @@
                             </div>
                             <!-- train section -->
                             <div class="bhoechie-tab-content">
-                                <div class="show-events" ng-repeat="talk in talksWaitingPartner">
-                                    <div class="text-center date-body" style="width:150px">
-                                        <label for="" class="date-title">{{talk.date | date:'MMMM'}}</label>
-                                        <div class="date-content">
-                                            <p class="dia">{{talk.date | date:'d'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row-content">
-                                        <div class="list-group-item-heading">
-                                            <h4>{{ talk.language}}</h4>
-                                            <h5>{{talk.date | date:'h:mm a'}}</h5>
-                                            <h6>{{talk.place}}</h6>
-                                            <h5>Choose a Partner:</h5>
-                                            <div class="row-picture">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
-                                                <img class="circle img-thumbnail img-box" src="img/default-user-image.png" alt="sintret">
+                                <div class="row" ng-repeat="talk in talksWaitingPartner">
+                                    <div class="show-events">
+                                        <div class="text-center date-body" style="width:150px">
+                                            <label for="" class="date-title">{{talk.date | date:'MMMM'}}</label>
+                                            <div class="date-content">
+                                                <p class="dia">{{talk.date | date:'d'}}</p>
                                             </div>
-                                            <button class="btn btn-danger">Cancel talk</button>
+                                        </div>
+                                        <div class="row-content">
+                                            <div class="list-group-item-heading">
+                                                <h4>{{ talk.language}}</h4>
+                                                <h5>{{talk.date | date:'h:mm a'}}</h5>
+                                                <h6>{{talk.place}}</h6>
+                                                <h5>Choose a Partner:</h5>
+                                                <div class="row-picture">
+                                                    <div ng-repeat="joiner in talk.joiners">
+                                                        <div class="show-events">
+                                                            <img class="circle img-thumbnail img-box" src="{{joiner.image}}">
+                                                            <span>{{ joiner.firstname }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-danger">Cancel talk</button>
+                                            </div>
+                                            
                                         </div>
                                         <hr>
-                                    </div>                                    
+                                    </div>
+                                    <br>                                    
                                 </div>
                             </div>
                             <div class="bhoechie-tab-content">

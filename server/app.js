@@ -1,3 +1,5 @@
+global.__require = require('./helpers/__requireFrom')(__dirname)
+
 const express = require('express')
 const path = require('path')
 
@@ -21,164 +23,74 @@ app.set('views', path.resolve('server/views'))
 app.set('view engine', 'pug')
 
 /* Passport Load */
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
 const passport = require('./config/passport/')
-app.use(passport.initialize())
 
-/* Json Web Token */
-var jwt = require('jsonwebtoken')
+app.use(cookieParser())
+app.use(session({ secret: 'supersecretworddonottelltoanyone' }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 /* Static Path */
 app.use(express.static(path.join(__dirname, '../client')))
-
 
 /* bodyParser */
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// app.use((req, res, next) => {
+//   console.log('req.user')
+//   console.log(req.user)
+//   console.log('req.session')
+//   console.log(req.session)
+//   next()
+// })
+
+/* Routes */
+app.use(require('./routes/auth/'))
+app.use(require('./routes/front/'))
+app.use('/api', require('./routes/api/'))
+
 /* navigation handling */
 
-app.get('/results', (req, res) => {
-    res.render('pages/results', { talks })
-})
-
-app.get('/', (req, res) => {
-    Talk.find({ available: true })
-        .limit(3)
-        .populate('creator')
-        .then(talks => {
-            res.render('pages/home', { talks })
-        })
-})
-
-app.get('/user', (req, res) => {
-    res.render('pages/user')
-})
-
-// app.get('/login', (req, res) => {
-//     const err = req.query.err
-//     res.render('pages/login', { wrongdata: err })
+// app.get('/results', (req, res) => {
+//   res.render('pages/results', { talks })
 // })
+
 
 // app.get('/login-fail', (req, res) => {
 //     res.redirect('/login?err=true')
 // })
 
-app.get('/register-fail', (req, res) => {
-    res.redirect('/register?err=true')
-})
+// app.get('/register-fail', (req, res) => {
+//   res.redirect('/register?err=true')
+// })
 
 
-app.get('/register', (req, res) => {
-    const err = req.query.err
-    res.render('pages/register', { userexists: err })
-})
 
-
-/* forms handling */
-
-app.post('/register', (req, res) => {
-    const { email, password } = req.body
-    const user = new User({ username: email })
-    User.register(user, password, err => {
-        if (err) {
-            return res.redirect('/register-fail')
-        } else {
-          res.redirect('user#!/login')
-        }
-    })
-})
-
-app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
-  const SECRET = process.env.SECRET || 'secret'
-  const { _id: id, username } = req.user
-  const token = jwt.sign({ id, username }, SECRET)
-  res.json({success: true, token: token})
-})
 /* API handling */
 
-app.get('/api/user/:id', (req, res) => {
-    var { id } = req.params
-    console.log(id)
-    User.findById(id, (err, user) => {
-      console.log(user)
-        res.json(user)
-    })
-})
-
-app.put('/api/user/:id/newlanguage/:language/:level', (req, res) => {
-    var { id, language, level } = req.params
-    User.findByIdAndUpdate(id, { $push: { languages: { language: language, level: level } } }, { safe: true, upsert: true }, function(err, data) {
-        return res.send(data);
-    })
-})
-
-app.put('/api/user/:id/remove/:language', (req, res) => {
-    var { id, language } = req.params
-    console.log(id, language)
-    User.findByIdAndUpdate(id, { $pull: { languages: { language: language } } })
-        .then((err, data) => {
-            return res.send(data)
-        })
-})
-
-app.post('/api/user/update', (req, res) => {
-    var { _id, firstname, lastname, age, country, about, email, password } = req.body
-    User.findByIdAndUpdate(_id, { $set: { firstname: firstname, lastname: lastname, age: age, country: country, about: about, email: email, password: password } })
-      .then(() => res.redirect('/user#!/profile'))
-})
-
-app.get('/api/talks-confirmed/:id', (req, res) => {
-    var { id } = req.params
-    Talk.find({ creator: id, joined: id, available: false }, (err, user) => {
-        res.json(user)
-    })
-})
-
-app.get('/api/talks-waiting-partner/:id', (req, res) => {
-    var { id } = req.params
-    Talk.find({ creator: id, available: true }, (err, user) => {
-        res.json(user)
-    })
-})
-
-app.get('/api/talks-waiting-response/:id', (req, res) => {
-    var { id } = req.params
-    Talk.find({ joiners: id, available: true })
-        .populate('creator')
-        .then(talks => {
-            res.json(talks)
-        })
-
-})
-
 app.post('/api/newtalk', (req, res) => {
-    var { id, newlanguage, date, place } = req.body
-    const language = newlanguage.split(':')[0]
-    const level = newlanguage.split(':')[1]
-    Talk.create({ date, place, language, level, creator: id, available: true })
-        .then((err, data) => {
-            return res.redirect('/user#!')
+  var { id, newlanguage, date, place } = req.body
+  const language = newlanguage.split(':')[0]
+  const level = newlanguage.split(':')[1]
+  Talk.create({ date, place, language, level, creator: id, available: true })
+        .then((_, data) => {
+          return res.redirect('/user#!')
         })
 })
 
 app.get('/talk/:id', (req, res) => {
-    var { id } = req.params
-    Talk.findById(id)
+  var { id } = req.params
+  Talk.findById(id)
         .populate('creator')
         .then(talk => {
-            console.log(talk)
-            res.render('pages/details', { talk })
+          console.log(talk)
+          res.render('pages/details', { talk })
         })
-})
-
-app.put('/api/join/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    var { id } = req.params
-    console.log()
-    console.log(req.user, 'hello')
-    Talk.findByIdAndUpdate(id, { $push: { joiners: '87654321' } }, { safe: true, upsert: true }, function(err, data) {
-        return res.send(data);
-    })
 })
 
 console.log(`Listening on port ${PORT}`)

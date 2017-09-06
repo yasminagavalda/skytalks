@@ -206,6 +206,10 @@
 
 /*---------------- RESULTS ----------------*/
 
+.list-results {
+    padding-left: 20px;
+}
+
 #custom-search-input {
     margin-left: 2%;
     margin-right: 2%;
