@@ -32,9 +32,6 @@ angular.module('skytalksApp')
         var addNewLanguage = function(newlanguage, newlevel) {
             var url = '/api/user/' + $rootScope.userId + '/newlanguage/' + newlanguage + '/' + newlevel
             return $http.put(url)
-                .then(function(response) {
-                    window.location.reload()
-                })
         }
 
         var removeLanguage = function(language) {
