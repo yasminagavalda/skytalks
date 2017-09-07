@@ -18,6 +18,9 @@
                             <!-- flight section -->
                             <div class="bhoechie-tab-content active">
                                 <div class="showtalks">
+                                    <div ng-show="talksconfirmed.length===0">
+                                        <h4>You do not have any confirmed talk yet</h4>
+                                    </div>
                                     <div class="row" ng-repeat="talk in talksconfirmed">
                                         <div class="list-group">
                                             <div class="list-group-item">
@@ -50,6 +53,9 @@
                             </div>
                             <!-- train section -->
                             <div class="bhoechie-tab-content">
+                                <div ng-show="talksWaitingPartner.length===0">
+                                    <h4>You do not have any chat created that wait partner</h4>
+                                </div>
                                 <div class="row" ng-repeat="talk in talksWaitingPartner">
                                     <div class="show-events">
                                         <div class="text-center date-body" style="width:150px">
@@ -86,6 +92,9 @@
                             </div>
                             <div class="bhoechie-tab-content">
                                 <div class="showtalks">
+                                    <div ng-show="talksWaitingResponse.length===0">
+                                        <h4>You do not have any talk waiting for an answer</h4>
+                                    </div>
                                     <div class="row" ng-repeat="talk in talksWaitingResponse">   
                                         <div>
                                             <div class="list-group">
