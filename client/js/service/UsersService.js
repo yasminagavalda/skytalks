@@ -61,9 +61,6 @@ angular.module('skytalksApp')
         var removeLanguage = function(language) {
             var url = '/api/user/' + user.id + '/remove/' + language
             return $http.put(url)
-                .then(function(response) {
-                    window.location.reload()
-                })
         }
 
         var updateProfile = function() {
