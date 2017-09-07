@@ -1,12 +1,12 @@
 angular.module('skytalksApp')
     .factory('UsersService', function($http, jwtHelper) {
-        var user = {};
+        var user;
 
         function setToken(token) {
             sessionStorage.setItem('token', token);
             var tokenPayload = jwtHelper.decodeToken(token);
-            user.username = tokenPayload.username;
-            user.id = tokenPayload.id;
+            sessionStorage.setItem('username', tokenPayload.username);
+            sessionStorage.setItem('userId', tokenPayload.id);
         }
 
         function getToken() {
@@ -18,6 +18,12 @@ angular.module('skytalksApp')
         }
 
         function getUser() {
+            if (!user) {
+                user = {
+                    username: sessionStorage.getItem('username'),
+                    id: sessionStorage.getItem('userId')
+                }
+            }
             return user;
         }
 
@@ -28,7 +34,7 @@ angular.module('skytalksApp')
         }
 
         var getInfo = function() {
-            var url = 'api/user/' + user.id;
+            var url = 'api/user/' + getUser().id;
             return $http.get(url)
                 .then(function(response) {
                     return response.data
@@ -36,7 +42,7 @@ angular.module('skytalksApp')
         }
 
         var getLanguages = function() {
-            var url = 'api/user/' + user.id;
+            var url = 'api/user/' + getUser().id;
             return $http.get(url)
                 .then(function(response) {
                     return response.data.languages
@@ -44,12 +50,12 @@ angular.module('skytalksApp')
         }
 
         var addNewLanguage = function(newlanguage, newlevel) {
-            var url = '/api/user/' + user.id + '/newlanguage/' + newlanguage + '/' + newlevel
+            var url = '/api/user/' + getUser().id + '/newlanguage/' + newlanguage + '/' + newlevel
             return $http.put(url)
         }
 
         var removeLanguage = function(language) {
-            var url = '/api/user/' + user.id + '/remove/' + language
+            var url = '/api/user/' + getUser().id + '/remove/' + language
             return $http.put(url)
         }
 
@@ -60,7 +66,7 @@ angular.module('skytalksApp')
         }
 
         var updateImage = function(image) {
-            var url = '/api/user/' + user.id + '/update/image'
+            var url = '/api/user/' + getUser().id + '/update/image'
             image = image.toString()
             return $http.put(url, { image })
                 .then(function(response) {
@@ -69,7 +75,7 @@ angular.module('skytalksApp')
         }
 
         var getTalks = function() {
-            var url = 'talk/' + user.id;
+            var url = 'talk/' + getUser().id;
             return $http.get(url)
                 .then(function(response) {
                     return response.data
