@@ -1,6 +1,6 @@
 function showLogout (req, res) {
   req.logout()
-  res.redirect('/')
+  res.redirect('/login')
 }
 
 module.exports = showLogout
