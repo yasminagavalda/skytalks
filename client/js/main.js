@@ -22,7 +22,7 @@ $('.jointalk').click(function() {
     method: 'PUT'
   })
   .then( data => {
-    $(location).attr('href', '/user#!/')
+    $(location).attr('href', '/user#!/my-talks')
   } )
 })
 
