@@ -2,7 +2,7 @@ angular.module('skytalksApp')
 
     .factory('TalksService', function($http, UsersService) {
 
-        var createTalk = function() {
+        var createTalk = function(newlanguage, place, date) {
             var url = 'api/newtalk'
             return $http.post(url, {id: UsersService.getUser().id}, newlanguage, place, date)
         }

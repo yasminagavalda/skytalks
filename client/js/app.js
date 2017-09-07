@@ -15,11 +15,9 @@ angular.module('skytalksApp', ['ngRoute', 'angular-jwt', 'ngFileUpload'])
         }
 
         $rootScope.$on('$routeChangeStart', function(event, next, current) {
-            //if (next && next.secure) {
                 var atUser = $window.location.href.indexOf('user') > -1;
                 if (!UsersService.isLoggedIn() && atUser) {
                     $window.location.href ='/login'
                 }
-            //}
         })
     })
