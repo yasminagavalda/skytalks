@@ -18,7 +18,9 @@ angular.module('skytalksApp', ['ngRoute', 'angular-jwt', 'ngFileUpload'])
             console.log('route has changed')
             //if (next && next.secure) {
                 console.log('this route is secured!!')
-                if (!UsersService.isLoggedIn() && $window.location.href.indexOf('login') < 0) {
+
+                var atUser = $window.location.href.indexOf('user') > -1;
+                if (!UsersService.isLoggedIn() && atUser) {
                     $window.location.href ='/login'
                 }
             //}
