@@ -55,7 +55,16 @@ block content
       h3.list-results Talks in #{language}:
       br
       if talks.length === 0
-        p.list-results No results found...
+        h4.list-results No results found
+        br
+        if user
+          h5.list-results
+            a(href='/user#!/new-talk') Create a new talk
+        else
+          h5.list-results
+            a(href='/login') Sign in
+            |  and create a new talk
+
       ul.thumbnails
         each talk, i in talks
           li.span4.col-xs-12.col-md-4
