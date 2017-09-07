@@ -27,16 +27,6 @@ angular.module('skytalksApp')
           return $http.get('/logout')
         }
 
-        function getData() {
-            var url = 'api/user/' + user.id;
-            return $http.get(url)
-                .then(function(response) {
-                    if (!response.data.firstname) return false
-                    return true
-                })
-        }
-
-
         var getInfo = function() {
             var url = 'api/user/' + user.id;
             return $http.get(url)
@@ -98,7 +88,6 @@ angular.module('skytalksApp')
             addNewLanguage,
             removeLanguage,
             updateProfile,
-            getData,
             updateImage
         }
     })

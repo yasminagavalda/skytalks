@@ -41,34 +41,11 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// app.use((req, res, next) => {
-//   console.log('req.user')
-//   console.log(req.user)
-//   console.log('req.session')
-//   console.log(req.session)
-//   next()
-// })
-
 /* Routes */
 app.use(require('./routes/auth/'))
 app.use(require('./routes/front/'))
 app.use('/api', require('./routes/api/'))
 app.use(require('./routes/cloudinary/'))
-
-
-/* API handling */
-
-app.post('/api/newtalk', (req, res) => {
-  var { id, newlanguage, date, place } = req.body
-  const language = newlanguage.split(':')[0]
-  const level = newlanguage.split(':')[1]
-  Talk.create({ date, place, language, level, creator: id, available: true })
-        .then((_, data) => {
-          return res.redirect('/user#!')
-        })
-})
-
-
 
 console.log(`Listening on port ${PORT}`)
 app.listen(PORT)

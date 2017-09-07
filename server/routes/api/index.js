@@ -14,6 +14,7 @@ const getWaitingResponseTalks = require('./handlers/talks/getWaitingResponseTalk
 const savePartner = require('./handlers/talks/savePartner')
 const cancelTalk = require('./handlers/talks/cancelTalk')
 const unjoinTalk = require('./handlers/talks/unjoinTalk')
+const createTalk = require('./handlers/talks/createTalk')
 
 router.get('/user/:id', getDetailsUser)
 router.put('/user/:id/newlanguage/:language/:level', addLanguage)
@@ -27,5 +28,6 @@ router.get('/talks-waiting-response/:id', getWaitingResponseTalks)
 router.put('/talk/:talkid/partner/:partnerid', savePartner)
 router.delete('/cancel/talk/:id', cancelTalk)
 router.put('/unjoin/:userid/talk/:talkid', unjoinTalk)
+router.post('/newtalk', createTalk)
 
 module.exports = router

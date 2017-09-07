@@ -8,7 +8,6 @@ angular.module('skytalksApp')
 
         $scope.createTalk = function(e) {
             e.preventDefault();
-
-            TalksService.createTalk();
+            TalksService.createTalk(newlanguage, place, date);
         }
     })

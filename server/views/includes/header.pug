@@ -29,8 +29,7 @@ nav.navbar.navbar-default.navbar-fixed-top
             a(href='register') REGISTER
 
 script.
-  script(src="https://code.jquery.com/jquery-2.1.1.min.js")
-  $(function(){
+  (function(){
     $(".dropdown").hover(
     function() {
     $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
