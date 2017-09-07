@@ -1,6 +1,6 @@
 <div class="body">
     <div class="newtalk">
-        <form class="form-horizontal" action="api/newtalk" method="POST">
+        <form ng-submit="createTalk()" class="form-horizontal" action="api/newtalk" method="POST">
             <fieldset>
                 <legend>New talk meeting</legend>
                 <input value="{{ id }}" name="id" type="text" class="form-control hidden"/>

@@ -1,9 +1,11 @@
 angular.module('skytalksApp')
-    .controller('navController', function ($window, $scope, StorageService, AuthService) {
+    .controller('navController', function ($scope, $window, UsersService) {
       
       $scope.logout = function () {
-	      AuthService.logout()
-	      $window.location.href = '/'
+	      UsersService.logout()
+	      	.then(function(res) {
+	      		$window.location.href = '/';
+	      	});
 	    }
-    })
+    });
       

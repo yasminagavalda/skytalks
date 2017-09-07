@@ -1,7 +1,7 @@
 angular.module('skytalksApp')
     .config(function ($routeProvider) {
       $routeProvider
-            .when('/talk', {
+            .when('/new-talk', {
               templateUrl: 'js/routes/newtalk/template.html',
               controller: 'newTalkController'
             })

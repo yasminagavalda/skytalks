@@ -10,11 +10,11 @@ nav.navbar.navbar-default.navbar-fixed-top
       ul.nav.navbar-nav.navbar-right(ng-controller='navController')
         if user
           li
-            a(href='/user#!') MY TALKS
+            a(href='/user#!/my-talks') MY TALKS
           li
-            a(href='/user#!/talk') NEW TALK
+            a(href='/user#!/new-talk') NEW TALK
           li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
+            a.dropdown-toggle(data-toggle='dropdown')
               | #{user.username}
               b.caret
             ul.dropdown-menu

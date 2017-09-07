@@ -1,6 +1,6 @@
 angular.module('skytalksApp')
 
-    .factory('TalksService', function($http, $rootScope) {
+    .factory('TalksService', function($http, UsersService) {
 
         var createTalk = function() {
             var url = 'api/newtalk'
@@ -11,7 +11,7 @@ angular.module('skytalksApp')
         }
 
         var getMyTalksConfirmed = function() {
-            var url = 'api/talks-confirmed/' + $rootScope.userId
+            var url = 'api/talks-confirmed/' + UsersService.getUser().id
             return $http.get(url)
                 .then(function(response) {
                     return response.data
@@ -19,7 +19,7 @@ angular.module('skytalksApp')
         }
 
         var getMyTalksWaitingPartner = function() {
-            var url = 'api/talks-waiting-partner/' + $rootScope.userId
+            var url = 'api/talks-waiting-partner/' + UsersService.getUser().id
             return $http.get(url)
                 .then(function(response) {
                     return response.data
@@ -27,7 +27,7 @@ angular.module('skytalksApp')
         }
 
         var getMyTalksWaitingResponse = function() {
-            var url = 'api/talks-waiting-response/' + $rootScope.userId
+            var url = 'api/talks-waiting-response/' + UsersService.getUser().id
             return $http.get(url)
                 .then(function(response) {
                     return response.data
@@ -52,8 +52,8 @@ angular.module('skytalksApp')
                 })
         }
 
-        var unjoinTalk = function (talkId, userId) {
-            var url = 'api/unjoin/' + userId + '/talk/' + talkId
+        var unjoinTalk = function (talkId) {
+            var url = 'api/unjoin/' + UsersService.getUser().id + '/talk/' + talkId
             console.log('service')
             return $http.put(url)
                 .then(function() {
