@@ -4,7 +4,6 @@ angular.module('skytalksApp')
 
         function setToken(token) {
             sessionStorage.setItem('token', token);
-
             var tokenPayload = jwtHelper.decodeToken(token);
             user.username = tokenPayload.username;
             user.id = tokenPayload.id;

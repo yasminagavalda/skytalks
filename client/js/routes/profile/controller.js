@@ -14,7 +14,6 @@ angular.module('skytalksApp')
         $scope.addLanguage = function(newlanguage, newlevel) {
             UsersService.addNewLanguage(newlanguage, newlevel)
                 .then(function(response) {
-                    // window.location.reload()
                     loadUserProfile()
                         .then(function() {
                             $scope.showLanguage = true
@@ -24,6 +23,12 @@ angular.module('skytalksApp')
 
         $scope.removeLanguage = function(language) {
             UsersService.removeLanguage(language)
+                .then(function(response) {
+                    loadUserProfile()
+                        .then(function() {
+                            $scope.removedLanguage = true
+                        })
+                })
         }
 
         $scope.showAlert = function() {
