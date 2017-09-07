@@ -453,10 +453,15 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 }
 
 img.circle {
-    
+    padding: 0;
     width:70px;
     height: 70px;
     border-radius: 35px;
+    cursor:pointer;
+}
+
+img.circle:hover {
+    border: 2px solid green;
 }
 
 .row-picture.img {
