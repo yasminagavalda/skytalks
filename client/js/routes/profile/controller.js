@@ -17,6 +17,8 @@ angular.module('skytalksApp')
                     loadUserProfile()
                         .then(function() {
                             $scope.showLanguage = true
+                            $scope.removedLanguage = false
+                            $scope.show = false
                         })
                 })
         }
@@ -27,12 +29,16 @@ angular.module('skytalksApp')
                     loadUserProfile()
                         .then(function() {
                             $scope.removedLanguage = true
+                            $scope.showLanguage = false
+                            $scope.show = false
                         })
                 })
         }
 
         $scope.showAlert = function() {
             $scope.show = true
+            $scope.showLanguage = false
+            $scope.removedLanguage = false
         }
 
         $scope.fileSelected = (files) => {
