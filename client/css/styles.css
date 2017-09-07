@@ -461,7 +461,7 @@ img.circle {
 }
 
 img.circle:hover {
-    filter: contrast(10%);
+    filter: contrast(50%);
 }
 
 .row-picture.img {
