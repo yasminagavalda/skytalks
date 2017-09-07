@@ -4,7 +4,7 @@ function handleJoin (req, res) {
   const { id } = req.params
   const { user: { _id } } = req
   Talk.findByIdAndUpdate(id, { $push: { joiners: _id } }, { safe: true, upsert: true })
-    .then(data => { res.redirect('/user') })
+    .then(data => { res.redirect('/user#!/my-talks') })
 }
 
 module.exports = handleJoin
