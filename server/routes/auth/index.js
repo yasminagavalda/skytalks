@@ -9,6 +9,7 @@ const handleLoginFail = require('./handlers/handleLoginFail')
 const showRegister = require('./handlers/showRegister')
 const handleRegister = require('./handlers/handleRegister')
 const handleRegisterFail = require('./handlers/handleRegisterFail')
+const handleRegisterOk = require('./handlers/handleRegisterOk')
 const showLogout = require('./handlers/showLogout')
 
 router.get('/login', showLogin)
@@ -17,6 +18,7 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login-
 router.get('/register', showRegister)
 router.post('/register', handleRegister)
 router.get('/register-fail', handleRegisterFail)
+router.get('/register-ok', handleRegisterOk)
 router.get('/logout', showLogout)
 
 module.exports = router

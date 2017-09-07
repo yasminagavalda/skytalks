@@ -12,7 +12,12 @@ block content
               .alert.alert-danger.alert-dismissable
                 a.panel-close.close(data-dismiss='alert') ×
                 i.fa.fa-coffee
-                |         Email already exists.
+                |         Email already exists
+            if registerok
+              .alert.alert-success.alert-dismissable
+                a.panel-close.close(data-dismiss='alert') ×
+                i.fa.fa-coffee
+                |         You have successfully registered
             br
             input.form-control(type='email', name='email', placeholder='Email', required='', autofocus='')
             br
@@ -23,6 +28,9 @@ block content
                   i.glyphicon.glyphicon-eye-open
             br
             button.btn.btn-lg.mybutton.btn-block(value='Login', type='Submit') Register
+            br
+            a.register(href='login' name='Submit', value='Login', type='Submit') Login
+
 
 
 
