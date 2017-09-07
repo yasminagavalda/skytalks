@@ -59,19 +59,15 @@ angular.module('skytalksApp')
             return $http.put(url)
         }
 
-        var updateProfile = function(firstname, lastname, age, country, about, email, password) {
-            var url = '/api/user/update'
-            return $http.put(url)
-                .then(function(response) {})
-        }
+        // var updateProfile = function(firstname, lastname, age, country, about, email, password) {
+        //     var url = '/api/user/update'
+        //     return $http.post(url, {id:getUser().id, firstname, lastname, age, country, about, email, password})
+        // }
 
         var updateImage = function(image) {
             var url = '/api/user/' + getUser().id + '/update/image'
             image = image.toString()
             return $http.put(url, { image })
-                .then(function(response) {
-                    window.location.reload()
-                })
         }
 
         var getTalks = function() {
@@ -93,7 +89,7 @@ angular.module('skytalksApp')
             getTalks,
             addNewLanguage,
             removeLanguage,
-            updateProfile,
+            // updateProfile,
             updateImage
         }
     })

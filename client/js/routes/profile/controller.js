@@ -62,7 +62,9 @@ angular.module('skytalksApp')
                 .success(({ imageLink }) => {
                     $scope.image = imageLink
                     UsersService.updateImage(imageLink)
-                        .then(() => $window.location.reload())
+                        .then(() => {
+                            loadUserProfile()
+                        })
                 })
         }
 
