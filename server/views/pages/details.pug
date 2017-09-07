@@ -51,7 +51,7 @@ block content
         .form-group
           label.col-md-3.control-label Time:
           .col-md-6
-            p= talk.date.toLocaleTimeString().split(':').slice(0,2).join(':')
+            p= talk.date.toTimeString().split(':').slice(0,2).join(':')
         if user
           .form-group
             label.col-md-3.control-label
