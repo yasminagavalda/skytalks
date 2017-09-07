@@ -29,10 +29,6 @@ angular.module('skytalksApp')
         .then(function (response) {
           $scope.user = response
           $scope.languages = response.languages
-          if(!response.image) {
-            UsersService.updateImage('http://res.cloudinary.com/djtxc60sj/image/upload/v1504710538/skytalks/default-user-image.png')
-            $window.location.reload()
-          }
         })
 
       $scope.addLanguage = function (newlanguage, newlevel) {
@@ -61,7 +57,6 @@ angular.module('skytalksApp')
         Upload.upload({ url, file })
           .success( ({imageLink}) => {
             $scope.image = imageLink
-            console.log($scope.image)
             UsersService.updateImage(imageLink)
               .then(() => window.location.reload())
           })
