@@ -25,13 +25,11 @@ angular.module('skytalksApp')
       const tokenPayload = jwtHelper.decodeToken(token)
       $rootScope.userId = tokenPayload.id
         
-      function loadUserProfile(callback) {
-        UsersService.getInfo($rootScope.userId)
+      function loadUserProfile() {
+        return UsersService.getInfo($rootScope.userId)
         .then(function (response) {
           $scope.user = response
           $scope.languages = response.languages
-          if (callback)
-            callback(response)
         })
       }
 
@@ -41,9 +39,10 @@ angular.module('skytalksApp')
         UsersService.addNewLanguage(newlanguage, newlevel)
           .then(function(response) {
                     // window.location.reload()
-                    loadUserProfile(function() {
-                      $scope.showLanguage = true
-                    })
+                    loadUserProfile()
+                      .then(function() {
+                        $scope.showLanguage = true
+                      })
                 })
       }
 
