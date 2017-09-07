@@ -5,7 +5,7 @@ function getConfirmedTalks (req, res) {
   Talk.find({ creator: id, available: false })
   	.populate('creator')
   	.populate('joined')
-  	.sort({date})
+  	.sort({date: 1})
   	.then((user) => {
 	    res.json(user)
 	  })

@@ -4,7 +4,7 @@ function getWaitingResponseTalks (req, res) {
   var { id } = req.params
   Talk.find({ joiners: id, available: true })
         .populate('creator')
-        .sort({date})
+        .sort({date: 1})
         .then(talks => {
           res.json(talks)
         })
