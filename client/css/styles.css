@@ -457,11 +457,12 @@ img.circle {
     width:70px;
     height: 70px;
     border-radius: 35px;
-    cursor:pointer;
+    
 }
 
 img.showpartner:hover {
     filter: contrast(50%);
+    cursor:pointer;
 }
 
 .row-picture.img {
