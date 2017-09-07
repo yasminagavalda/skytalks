@@ -4,7 +4,10 @@ angular.module('skytalksApp')
 
         var createTalk = function(newlanguage, place, date) {
             var url = 'api/newtalk'
-            return $http.post(url, {id: UsersService.getUser().id}, newlanguage, place, date)
+            return $http.post(url, {id: UsersService.getUser().id, newlanguage, place, date})
+                .then(function(response) {
+                    return response
+                })
         }
 
         var getMyTalksConfirmed = function() {

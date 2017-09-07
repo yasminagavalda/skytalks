@@ -59,10 +59,9 @@ angular.module('skytalksApp')
             return $http.put(url)
         }
 
-        var updateProfile = function() {
+        var updateProfile = function(firstname, lastname, age, country, about, email) {
             var url = '/api/user/update'
-            return $http.put(url)
-                .then(function(response) {})
+            return $http.put(url, {id: getUser().id,firstname, lastname, age, country, about, email})
         }
 
         var updateImage = function(image) {

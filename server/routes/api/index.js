@@ -19,7 +19,7 @@ const createTalk = require('./handlers/talks/createTalk')
 router.get('/user/:id', getDetailsUser)
 router.put('/user/:id/newlanguage/:language/:level', addLanguage)
 router.put('/user/:id/remove/:language', removeLanguage)
-router.post('/user/update', updateDataUser)
+router.put('/user/update', updateDataUser)
 router.put('/user/:id/update/image', updateImage)
 
 router.get('/talks-confirmed/:id', getConfirmedTalks)

@@ -11,6 +11,19 @@ angular.module('skytalksApp')
 
         loadUserProfile()
 
+        $scope.updateUser = function (firstname, lastname, age, country, about, email, password) {
+            UsersService.updateProfile(firstname, lastname, age, country, about, email, password)
+                .then(function() {
+                    loadUserProfile()
+                        .then(function() {
+                            console.log('updated')
+                            $scope.show = true
+                            $scope.showLanguage = false
+                            $scope.removedLanguage = false
+                        })
+                })
+        }
+
         $scope.addLanguage = function(newlanguage, newlevel) {
             UsersService.addNewLanguage(newlanguage, newlevel)
                 .then(function(response) {
@@ -35,12 +48,6 @@ angular.module('skytalksApp')
                 })
         }
 
-        $scope.showAlert = function() {
-            $scope.show = true
-            $scope.showLanguage = false
-            $scope.removedLanguage = false
-        }
-
         $scope.fileSelected = (files) => {
             if (files && files.length) {
                 $scope.file = files[0];
@@ -55,7 +62,7 @@ angular.module('skytalksApp')
                 .success(({ imageLink }) => {
                     $scope.image = imageLink
                     UsersService.updateImage(imageLink)
-                        .then(() => window.location.reload())
+                        .then(() => $window.location.reload())
                 })
         }
 

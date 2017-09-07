@@ -1,13 +1,15 @@
 angular.module('skytalksApp')
-    .controller('newTalkController', function($scope, UsersService, TalksService) {
+    .controller('newTalkController', function($scope, $location, UsersService, TalksService) {
         UsersService.getLanguages()
             .then(function(languages) {
                 $scope.languages = languages;
             });
 
 
-        $scope.createTalk = function(e) {
-            e.preventDefault();
-            TalksService.createTalk(newlanguage, place, date);
+        $scope.createTalk = function(newlanguage, place, date) {
+            TalksService.createTalk(newlanguage, place, date)
+                .then(() => {
+                    $location.path('/my-talks')
+                })
         }
     })
