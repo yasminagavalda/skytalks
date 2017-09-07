@@ -24,6 +24,7 @@ angular.module('skytalksApp')
       TalksService.getMyTalksConfirmed($rootScope.userId)
         .then(function (response) {
           $scope.talksconfirmed = response
+          console.log('creator: ' + response.creator, 'joined: ' + response.joined, 'actual user: ' + $rootScope.userId)
         })
 
       TalksService.getMyTalksWaitingPartner($rootScope.userId)
