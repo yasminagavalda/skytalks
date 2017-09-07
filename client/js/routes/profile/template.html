@@ -16,42 +16,43 @@
                 <div ng-show='show' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Changes saved <strong>successfully</strong></div>
                 <div ng-show='showLanguage' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Language saved <strong>successfully</strong></div>
                 <div ng-show='removedLanguage' class="alert alert-success alert-dismissable"><a data-dismiss="alert" class="panel-close close">×</a><i class="fa fa-coffee"></i>        Language removed <strong>successfully</strong></div>
-                <form role="form" ng-submit="updateUser(firstname, lastname, age, country, about, email, password)" class="form-horizontal">
+                <form role="form" class="form-horizontal" action="/api/user/update" method="POST">
+                    <input value="{{ user._id }}" name="_id" type="text" class="form-control hidden"/>
                     <legend>Personal info</legend>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.firstname }}" ng-model="firstname" type="text" class="form-control"/>
+                            <input value="{{ user.firstname }}" name="firstname" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Last name:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.lastname }}" ng-model="lastname" type="text" class="form-control"/>
+                            <input value="{{ user.lastname }}" name="lastname" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Country:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.country }}" ng-model="country" type="text" class="form-control"/>
+                            <input value="{{ user.country }}" name="country" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Age:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.age }}" ng-model="age" type="text" class="form-control"/>
+                            <input value="{{ user.age }}" name="age" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">About me:</label>
                         <div class="col-lg-8">
-                            <textarea class="form-control" ng-model="about" >{{ user.about }}</textarea>
+                            <textarea class="form-control" name="about" >{{ user.about }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
-                            <input value="{{ user.username }}" ng-model="email" type="email" class="form-control"/>
+                            <input value="{{ user.username }}" name="email" type="email" class="form-control"/>
                         </div>
                     </div>
                     <div class="col-lg-8 col-lg-offset-3 containbutton">

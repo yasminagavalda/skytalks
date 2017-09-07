@@ -11,18 +11,18 @@ angular.module('skytalksApp')
 
         loadUserProfile()
 
-        $scope.updateUser = function (firstname, lastname, age, country, about, email, password) {
-            UsersService.updateProfile(firstname, lastname, age, country, about, email, password)
-                .then(function() {
-                    loadUserProfile()
-                        .then(function() {
-                            console.log('updated')
-                            $scope.show = true
-                            $scope.showLanguage = false
-                            $scope.removedLanguage = false
-                        })
-                })
-        }
+        // $scope.updateUser = function (firstname, lastname, age, country, about, email) {
+        //     UsersService.updateProfile(firstname, lastname, age, country, about, email)
+        //         .then(function() {
+        //             loadUserProfile()
+        //                 .then(function() {
+        //                     console.log('updated')
+        //                     $scope.show = true
+        //                     $scope.showLanguage = false
+        //                     $scope.removedLanguage = false
+        //                 })
+        //         })
+        // }
 
         $scope.addLanguage = function(newlanguage, newlevel) {
             UsersService.addNewLanguage(newlanguage, newlevel)
