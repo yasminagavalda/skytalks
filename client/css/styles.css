@@ -460,7 +460,7 @@ img.circle {
     cursor:pointer;
 }
 
-img.circle:hover {
+img.showpartner:hover {
     filter: contrast(50%);
 }
 
