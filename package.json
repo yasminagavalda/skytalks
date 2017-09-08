@@ -4,7 +4,6 @@
   "description": "![Logo](img/logo.png)",
   "main": "app.js",
   "scripts": {
-    "prestart": "npm install && bower install",
     "start": "node server/app",
     "dev": "nodemon server/app"
   },
