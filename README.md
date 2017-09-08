@@ -98,7 +98,9 @@ npm run dev
 ### Acknowledgments:
 
 [SkylabCoders]
+
 [JuanMa Garrido]
+
 [Manuel Barzi]
 
 [SkylabCoders]:https://github.com/SkylabCoders
