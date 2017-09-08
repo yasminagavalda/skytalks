@@ -98,8 +98,10 @@ npm run dev
 ### Acknowledgments:
 
 [SkylabCoders]
+
 [JuanMa Garrido]
-[manuelbarzi]
+
+[Manuel Barzi]
 
 [SkylabCoders]:(https://github.com/SkylabCoders)
 [JuanMa Garrido]:(https://github.com/juanmaguitar)
