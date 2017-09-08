@@ -60,7 +60,7 @@ All dependencies will be installed automatically
 npm run dev
 ~~~
 
-###Built with:
+### Built with:
 
 * Front-end
 
@@ -89,8 +89,18 @@ npm run dev
     - del: 3.0.0,
     - multer: 1.3.0
 
-###Author:
+### Author:
 
 [Yasmina Gavaldà]
 
 [Yasmina Gavaldà]:https://github.com/yasminagavalda
+
+### Acknowledgments:
+
+[SkylabCoders]
+[JuanMa Garrido]
+[manuelbarzi]
+
+[SkylabCoders]:(https://github.com/SkylabCoders)
+[JuanMa Garrido]:(https://github.com/juanmaguitar)
+[Manuel Barzi]:(https://github.com/manuelbarzi)
