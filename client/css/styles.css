@@ -95,6 +95,22 @@
     background-color: #12A5CC;
 }
 
+/*.alert-talks, .alert-talks-wpartner {
+    width:20px; 
+    height:20px; 
+    background-color:red; 
+    border-radius:50%; 
+    color: white; 
+    justify-content: center; 
+    align-items: center; 
+    display: inline-flex;
+}
+
+.alert-talks span {
+    padding-left: 2px;
+}
+*/
+
 
 
 /*---------------- FOOTER ----------------*/

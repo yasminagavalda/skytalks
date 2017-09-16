@@ -14,7 +14,8 @@ var UserSchema = new Schema({
   languages: [{
     language: String,
     level: String
-  }]
+  }],
+  alerts: {confirmed: Number, wpartner: Number, wanswer: Number}
 }, { collection })
 
 UserSchema.plugin(passportLocalMongoose)

@@ -1,6 +1,6 @@
 <div class="body">
     <div class="newtalk">
-        <form ng-submit="createTalk(newlanguage, place, date)" class="form-horizontal">
+        <form ng-submit="createTalk(newlanguage, place, city, date)" class="form-horizontal">
             <fieldset>
                 <legend>New talk meeting</legend>
                 <div class="form-group">
@@ -20,7 +20,14 @@
                     </div>
                 </div>
 
-                <div class="form-group"> <!-- Date input -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">City: </label>  
+                    <div class="col-md-4">
+                        <input id="autocomplete" type="text" placeholder="Enter a city..." ng-model="city" class="form-control input-md">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="col-md-4 control-label" for="date">Date and time: </label>
                     <div class="col-md-4">
                         <input id="textinput" ng-model="date" type="datetime-local" placeholder="" class="form-control input-md">
@@ -38,4 +45,5 @@
         </form>
     </div>
 </div>
+
 
