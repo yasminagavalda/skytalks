@@ -46,13 +46,20 @@ CLOUDINARY_API_KEY=CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET=CLOUDINARY_API_SECRET
 ~~~
 
+* npm & bower
+
+To install the dependencies:
+
+~~~
+npm install
+bower install
+~~~
+
 **To run the server:**
 
 ~~~
 npm start
 ~~~
-
-All dependencies will be installed automatically
 
 **To run in dev mode or debugg mode:**
 
